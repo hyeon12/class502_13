@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <style>
+            .box { 
+                width: 150px;
+                height: 150px;
+                background: orange;
+            }
+
+            .box.on { 
+                width: 150px;
+                height: 150px;
+            }
+        </style>
+        <script>
+            window.addEventListener("DOMContentLoaded", function(){
+                const boxEl = document.querySelector(".box");
+                boxEl.addEventListener("mouseenter", function(){
+                    this.classList.add("on"); //클래스를 선별적으로 적용
+                    /*console.log("mouseenter");*/
+                });
+
+                boxEl.addEventListener("mouseleave", function(){
+                    this.classList.remove("on");
+                    /*console.log("mouseleave");*/
+                });
+
+                const textEl = document.getElementById("text");
+                textEl.addEventListener("keyup", function(e){
+                    console.log(e);
+                    console.log("keyup", this.value);
+                });
+            });
+        </script>
+        <div class="box"></div> <!--box에 on 안써도 되는건지?,,,-->
+        <input type="text" id="text">
+    </body>
+</html>
