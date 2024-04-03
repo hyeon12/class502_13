@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <style>
+            .box {
+                width: 100px;
+                height: 100px;
+                margin: 50px;
+            }
+
+            .box1{
+                background: orange;
+                /*display: inline;*/ 
+                 /*display속성을 이용해 블록->인라인레벨*/
+            }
+
+            .box2{
+                background: blue;
+                /*display: inline;*/
+                /*display: none;*/
+                visibility: hidden;
+            }
+
+            .box3{
+                background: gray;
+                /*display: block;*/
+                display: inline-block;
+            }
+                 
+
+            .box4{
+                background: green;
+                /*display: block;*/
+                display: inline-block;
+            }
+        </style>
+        <div class="box box1">box1</div>
+        <div class="box box2">box2</div>   <!--블록레벨:너비높이지정ok,상하좌우여백적용ok-->
+
+        <span class="box box3">box3</span>
+        <span class="box box4">box4</span>    <!--인라인레벨:너비높이지정x,좌우여백만적용, 상하x-->
+    </body>
+</html>

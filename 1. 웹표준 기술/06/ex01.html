@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <style>
+            span {
+                font-variant: small-caps;
+            }
+            .font1{
+                font-style: italic;
+                color: rgb(0, 255, 0)
+            }
+            .font2{
+                font: bold italic 32px dotum;
+                /*color: #00ff00;*/
+                color: #0f0;
+            }
+            .box{
+                width: 200px;
+                height: 200px;
+                background: rgba(0, 0, 0, 0.6);
+            }
+            .font3{
+                text-decoration: underline;
+            }
+            .font4{
+                text-transform: lowercase; /*대문자를 소문자로*/
+            }
+            .font5{
+                text-transform: uppercase; /*소문자를 대문자로*/
+            }
+            .font6{
+                text-transform: capitalize; /*첫글자만 대문자로*/
+            }
+            .font7{
+                font-size: 30px;
+                text-shadow: 3px 3px 5px #222;
+                font-weight: bold;
+            }
+            
+        </style>
+
+        ABC<span>DeF</span>GHI
+        <div class="font1">ABC</div>
+        <div class="font2">가나다ABC</div>
+        <div class="font3">가나다</div>
+        
+        <br>
+        <div class="font4">ABC</div>
+        <div class="font5">abc</div>
+        <div class="font6">abc</div>
+        <div class="font7">가나다</div>
+        <br>
+        <div class="box">ABC</div>
+    </body>
+</html>
