@@ -12,15 +12,15 @@
             }
 
             .box.on { 
-                width: 150px;
-                height: 150px;
+                width: 300px;
+                height: 300px;
             }
         </style>
         <script>
             window.addEventListener("DOMContentLoaded", function(){
                 const boxEl = document.querySelector(".box");
                 boxEl.addEventListener("mouseenter", function(){
-                    this.classList.add("on"); //클래스를 선별적으로 적용
+                    this.classList.add("on"); //클래스를 선별적으로 적용!!!
                     /*console.log("mouseenter");*/
                 });
 
@@ -36,7 +36,7 @@
                 });
             });
         </script>
-        <div class="box"></div> <!--box에 on 안써도 되는건지?,,,-->
+        <div class="box"></div>
         <input type="text" id="text">
     </body>
 </html>
