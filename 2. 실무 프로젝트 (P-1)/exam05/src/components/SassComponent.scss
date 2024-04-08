@@ -1,0 +1,42 @@
+@import './utils.scss'; //@import : css스타일시트 불러오기
+
+.SassComponent {
+    display: flex; 
+
+    .box {            
+        &.red { //.box.red -> &:현재요소를 동일하게 선택
+            background: $red;
+            @include square(1);
+        }
+        &.orange {
+            background: $orange;
+            @include square(2);
+        }
+        &.yellow {
+            background: $yellow;
+            @include square(3);
+        }
+        &.green {
+            background: $green;
+            @include square(4);
+        }
+        &.blue {
+            background: $blue;
+            @include square(5);
+        }
+        &.indigo {
+            background: $indigo;
+            @include square(6);
+
+        }
+        &.violet {
+            background: $violet;
+            @include square(7);
+        }
+        &:hover {
+            background: #000;
+        }
+    }
+
+    
+}

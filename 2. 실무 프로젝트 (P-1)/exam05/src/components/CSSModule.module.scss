@@ -1,0 +1,16 @@
+.wrapper { //클래스명_해시값 형태로 자동저장
+    padding: 20px;
+    background: black;
+    color: white;
+    font-size: 2rem;
+
+    .highlight {
+        color: orange;
+        font-weight: bold;
+    }
+}
+
+:global .commonColor {
+    color: blue;
+}
+

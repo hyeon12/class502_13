@@ -1,7 +1,7 @@
 import { useState, useRef, useCallback } from 'react';
-
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
+import { produce } from 'immer';
 
 const intialValue = [
   { id: 1, title: '할일1', done: true },
@@ -12,8 +12,7 @@ const intialValue = [
 let submitFunc; //함수밖에 있기 때문에, 한번만 정의됨!
 
 const TodoContainer = () => {
-  //업데이트 시, 매번 함수 호출(기존날리고,교체!)
-  //상태변화
+  //업데이트 시, 매번 호출(기존날리고,교체!)
   const [items, setItems] = useState(intialValue);
   const [todo, setTodo] = useState('');
   const [message, setMessage] = useState('');
@@ -32,6 +31,7 @@ const TodoContainer = () => {
         return; // 함수 종료 (Submit 종료)
       }
 
+      /*
       setItems((prevItems) => {
         return prevItems.concat({
           id: id.current,
@@ -39,13 +39,24 @@ const TodoContainer = () => {
           done: false,
         });
       });
+      */
+
+      setItems(
+        produce((draft) => {
+          draft.push({
+            id: id.current,
+            title: todo.trim(),
+            done: false,
+          });
+        }),
+      );
 
       id.current++; //렌더링을 계속하기 때문에 useRef-current 써서 값을 증가시킴
 
       setTodo(''); //페이지가 바뀌면서 빈 항목이 출력되도록! 값만 변경
       setMessage(''); //???..
     },
-    [todo],
+    [todo], //변화감지기준
   );
 
   console.log('같은 함수 : ?', submitFunc === onSubmit); //기존값과 비교.. false
@@ -56,20 +67,30 @@ const TodoContainer = () => {
   //할일 목록 완료 여부 토글(true -> false, false -> true)
   const onToggle = useCallback((id) => {
     /*
-      const newItems = items.map(
+      const newItems = items.map( //최초값이 고정됨. 변화감지기준 필요!
         (
           item, //*map : 새로운 배열객체로 반환값 나옴
         ) => (item.id === id ? { ...item, done: !item.done } : item),
       ); //id가 같지 않으면 3항조건---이해하기..ㅠㅠ 여기에서 item은 ........뭘까..?
       setItems(newItems);
       */
-
+    /*
     setItems((prevItems) => {
+      //setItems에서 prevItems라는 현재값을 매개변수로 넣어 호출
+      //매개변수가 함수형태인.. 함수형업데이트 방식! ..변화감지기준 없어도됨.
       return prevItems.map((item) =>
         item.id === id ? { ...item, done: !item.done } : item,
       );
-    });
-  }, []);
+      */
+
+    setItems(
+      produce((draft) =>
+        draft.forEach((item) =>
+          item.id === id && (item.done = !item.done) ,
+        ),
+      ),
+    );
+  }, []); //상태변화감지값을 최소화하는 것이 좋다!
 
   //할일 목록 제거
   const onRemove = useCallback((id) => {
