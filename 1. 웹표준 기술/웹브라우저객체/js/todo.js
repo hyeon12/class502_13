@@ -5,6 +5,8 @@ const todo = {
     // 초기 저장 값 조회 -> 스케줄 완성
     const jsonData = localStorage.getItem("todos");
     const todos = jsonData ? JSON.parse(jsonData) : []; //없을때 기본=빈 값
+    this.data = todos;
+    this.id = todos.length + 1;
 
     const itemsEl = document.querySelector(".items");
 
@@ -21,7 +23,7 @@ const todo = {
    */
   add() {
     const subject = frmRegist.subject.value; //value 값 = 사용자가 입력한 값
-    
+
     if (!subject.trim()) {
       //좌우 공백 제거
       alert("할일을 입력하세요.");
@@ -43,6 +45,8 @@ const todo = {
     });
 
     this.save();
+
+    liEl.dataset.id = id;
   },
   save() {
     //로컬스토리지에 저장
@@ -60,6 +64,14 @@ const todo = {
     buttonEl.addEventListener("click", function () {
       const itemsEl = document.querySelector(".items");
       itemsEl.removeChild(liEl);
+
+      //localStorage에 저장된 데이터도 삭제
+      const id = Number(liEl.dataset.id);
+      const index = todo.data.findIndex((item) => item.id == id);
+      if (index !== -1) {
+        todo.data.splice(index, 1);
+        todo.save();
+      }
     });
 
     return liEl;
