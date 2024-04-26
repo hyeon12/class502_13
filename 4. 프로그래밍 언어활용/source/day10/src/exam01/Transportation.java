@@ -16,5 +16,5 @@ public enum Transportation {
         return fare;
     }
 
-    public abstract int getTotal(int person);
+    //public abstract int getTotal(int person); 미구현된 메서드 정의!
 }

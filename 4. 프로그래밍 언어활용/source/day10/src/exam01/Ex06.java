@@ -5,6 +5,6 @@ import java.util.Arrays;
 public class Ex06 {
     public static void main(String[] args) {
         Transportation[] trans = Transportation.values();
-        System.out.println(Arrays.toString(trans));
+        System.out.println(Arrays.toString(trans)); // [BUS, TAXI, SUBWAY]
     }
 }
