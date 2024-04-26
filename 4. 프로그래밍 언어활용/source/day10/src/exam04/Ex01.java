@@ -16,7 +16,8 @@ public class Ex01 {
         grapeBox.setItem(new Grape());
 
         if (grapeBox.getItem() instanceof Apple) {
-            // 타입 안정성이 떨어지는 문제 - 매번 타입 확인해야 하고... 오류가 발생하기 쉬움
+            // 타입
+            // 안정성이 떨어지는 문제 - 매번 타입 확인해야 하고.. 오류가 발생하기 쉬움
             Apple grape = (Apple) grapeBox.getItem();
             System.out.println(grape.get());
         }
