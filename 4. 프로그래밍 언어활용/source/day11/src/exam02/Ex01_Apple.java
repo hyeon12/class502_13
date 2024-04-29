@@ -6,6 +6,6 @@ public class Ex01_Apple {
         appleBox.add(new Apple()); //add() 사과를 박스에 담았다!
         appleBox.add(new Apple()); //사과를 한개 더 담자!
 
-        Juicer.make(appleBox); // make() 주스를 만들자!
+        Juicer.make3(appleBox); // make() 주스를 만들자!
     }
 }
