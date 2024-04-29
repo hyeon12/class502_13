@@ -1,4 +1,4 @@
-package cooperation;
+package cooperation2;
 
 public class Menu {
 
