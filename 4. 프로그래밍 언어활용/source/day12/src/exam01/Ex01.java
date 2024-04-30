@@ -17,5 +17,11 @@ public class Ex01 {
             Book next = iter.next();
             System.out.println(next);
         }
+
+        iter = books.iterator();
+        while(iter.hasNext()){
+            Book next = iter.next();
+            System.out.println(next);
+        }
     }
 }
