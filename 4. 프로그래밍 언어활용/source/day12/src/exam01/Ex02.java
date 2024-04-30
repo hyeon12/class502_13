@@ -16,8 +16,8 @@ public class Ex02 {
         System.out.println("----순방향----");
 
         while(iter.hasNext()){
-            Book book = iter.next();
             int index = iter.nextIndex();
+            Book book = iter.next();
             System.out.println("index : " + index);
             System.out.println(book);
         }
@@ -25,8 +25,8 @@ public class Ex02 {
         System.out.println("----역방향----");
 
         while(iter.hasPrevious()){
-            Book book = iter.previous();
             int index = iter.previousIndex();
+            Book book = iter.previous();
             System.out.println("index : " + index);
             System.out.println(book);
         }
