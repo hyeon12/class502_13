@@ -2,7 +2,7 @@ package card;
 
 public class CardCompany {
 
-    private static CardCompany instance = new CardCompany();
+    private static CardCompany instance;
 
     private CardCompany(){}
 
