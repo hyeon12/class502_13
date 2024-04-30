@@ -17,4 +17,5 @@ public class StarCoffee implements Coffee {
         this.price = price;
         return price;
     }
+
 }
