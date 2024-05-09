@@ -9,6 +9,7 @@ public class Ex01 {
         LocalDate startDate = LocalDate.of(today.getYear(), today.getMonth(), 1);
 
         int yoil = startDate.getDayOfWeek().getValue(); //1(월)~7(일)
+        //요일을 0(일)~6(토) -> yoil % 7 나머지 연산자로 바꿀 수 있다.
         System.out.println(yoil);//시작 요일 구하기!
 
         LocalDate endDate = startDate.plusMonths(1).minusDays(1);//다음달-1일
