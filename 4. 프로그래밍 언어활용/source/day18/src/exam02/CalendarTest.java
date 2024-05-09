@@ -1,5 +1,6 @@
 package exam02;
 
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class CalendarTest {
@@ -40,6 +41,7 @@ public class CalendarTest {
          * 1. 매월의 1일이 어떤 요일에 시작하는지
          * 2. 매월의 종료일이 무엇인지(28, 29, 30, 31 중)
          */
+
         return null;
     }
 

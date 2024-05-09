@@ -1,6 +1,7 @@
 package exam02;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 //매월 1일이 무슨 요일에 시작하는지?
 public class Ex01 {
