@@ -10,17 +10,14 @@ public class Game {
             money *= 2;
         }
 
-        /*
-        for(int i = 0; i < wins; i++){
-          percent = 0.5 * 0.5;
+        double continuity = 1.0;
+        for (int i = 0; i < wins; i++) {
+            continuity *= 0.5;
         }
-
-         */
 
 
         //double continuity = Math.pow(0.5, wins);
 
-        System.out.println("");
+        System.out.printf("연승확률은 %f, 최종 소지금액은 %d 입니다.%n", continuity, money);
     }
-
 }
