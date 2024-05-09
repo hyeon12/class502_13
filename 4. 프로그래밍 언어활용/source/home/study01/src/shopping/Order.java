@@ -1,4 +1,4 @@
-package Shopping;
+package shopping;
 
 public class Order {
     String OrderNo;

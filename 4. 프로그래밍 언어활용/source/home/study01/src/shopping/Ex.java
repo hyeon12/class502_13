@@ -1,4 +1,4 @@
-package Shopping;
+package shopping;
 
 public class Ex {
     public static void main(String[] args) {
