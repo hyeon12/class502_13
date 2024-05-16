@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.IntFunction;
 
 public class Ex02 {
     public static void main(String[] args) {
@@ -21,6 +22,17 @@ public class Ex02 {
 
         /*String[] data = new String[unfinished.size()]
         return unfinished.toArray(data)*/
-        return unfinished.toArray(String[]::new);/*i -> String[i]*/
+
+        /*
+        return unfinished.toArray(new IntFunction<String[]>() {
+            @Override
+            public String[] apply(int value) {
+                return new String[value];
+            }
+        });
+         */
+        /*i -> String[i]*/
+        //return unfinished.toArray(i -> new String[i]);
+        return unfinished.toArray(String[]::new);
     }
 }
