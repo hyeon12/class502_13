@@ -15,7 +15,10 @@ public class AppTest
     @Test
     public void shouldAnswerWithTrue()
     {
+<<<<<<< HEAD
         Member member = new Member();
+=======
+>>>>>>> 1930258ec00e6875597421778d200e8726ce2ab9
         assertTrue( true );
     }
 }
