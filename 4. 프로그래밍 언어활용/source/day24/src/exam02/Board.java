@@ -5,6 +5,7 @@ public class Board {
 
     private static Board getInstance(){
         synchronized (Board.class){
+
             if(instance == null) {
                 instance = new Board();
             }

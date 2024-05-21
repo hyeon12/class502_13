@@ -9,6 +9,7 @@ public class Account {
 
     public void withdraw(int money) {
         synchronized (this) {
+
             if (balance >= money) {
                 try {
                     Thread.sleep(1000);
