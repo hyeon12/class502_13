@@ -3,3 +3,4 @@
 *.iml
 /dbeaver
 /dbeaver-*
+/apache-maven-*

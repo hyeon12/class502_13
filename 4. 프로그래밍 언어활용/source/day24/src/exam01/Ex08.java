@@ -9,14 +9,15 @@ public class Ex08 {
         th1.start();
         th2.start();
         th3.start();
+        //3개 쓰레드 시작
 
         Thread.sleep(2000);
-        th1.suspend(); //일시정지
+        th1.suspend(); //2초 후 th1 일시정지
 
         Thread.sleep(2000);
-        th2.suspend(); //일시정지
+        th2.suspend(); //2초 후 th2 일시정지
 
-        Thread.sleep(3000);
+        Thread.sleep(3000); //3초 후
         th1.stop(); //정지(종료)
         th2.stop(); //정지(종료)
 
@@ -28,7 +29,7 @@ public class Ex08 {
 class Ex08_1 implements Runnable{
 
     //통제할 수 있는 값을 가지고, 메서드 통제
-    private volatile boolean stopped = false; // 정지x - true이면 멈춘 상태
+    private volatile boolean  stopped = false; // 정지x - true이면 멈춘 상태
     private volatile boolean suspended = false; // 일시정지x - true이면 정지상태
 
     private Thread th;
@@ -45,8 +46,12 @@ class Ex08_1 implements Runnable{
             if(!suspended){
                 System.out.println(th.getName());
                 try{
-                Thread.sleep(1000);
-                } catch (InterruptedException e){};
+                Thread.sleep(1000); //대기시간없이 넘어가므로, 사용성 증대
+                } catch (InterruptedException e){
+                    System.out.println("interrupted");
+                };
+            } else { // 일시 정지 상태 -> 다른 쓰레드로 바로 작업 양보
+                th.yield();
             }
         }
     }
@@ -58,6 +63,7 @@ class Ex08_1 implements Runnable{
 
     public void suspend(){
         suspended = true;
+        System.out.println("suspend - interrupted");
     }
 
     public void resume(){
@@ -66,5 +72,6 @@ class Ex08_1 implements Runnable{
 
     public void stop(){
         stopped = true;
+        System.out.println("stop - interrupted");
     }
 }
