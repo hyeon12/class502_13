@@ -29,7 +29,7 @@ public class Ex08 {
 class Ex08_1 implements Runnable{
 
     //통제할 수 있는 값을 가지고, 메서드 통제
-    private volatile boolean  stopped = false; // 정지x - true이면 멈춘 상태
+    private volatile boolean  stopped =false; // 정지x - true이면 멈춘 상태
     private volatile boolean suspended = false; // 일시정지x - true이면 정지상태
 
     private Thread th;
