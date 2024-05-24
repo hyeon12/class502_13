@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.BoardMapper">
+    <resultMap id="BoardMap" type="member.Board">
+        <result column="SEQ" property="seq"/>
+        <result column="POSTER" property="poster"/>
+    </resultMap>
+    <!-- 실행하려는 쿼리의 id 값(임의지정) -->
+    <select id="getList" resultMap="BoardMap">
+        SELECT * FROM MEMBER
+    </select>
+</mapper>
