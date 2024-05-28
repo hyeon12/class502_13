@@ -6,9 +6,32 @@
     <resultMap id="BoardMap" type="member.Board">
         <result column="SEQ" property="seq"/>
         <result column="POSTER" property="poster"/>
+        <result column="SUBJECT" property="subject"/>
+        <result column="CONTENT" property="content" />
+        <result column="REG_DT" property="regDt"/>
+        <result column="MOD_DT" property="modDt" />
     </resultMap>
     <!-- 실행하려는 쿼리의 id 값(임의지정) -->
-    <select id="getList" resultMap="BoardMap">
-        SELECT * FROM MEMBER
+    <select id="select" resultMap="BoardMap">
+        SELECT * FROM Board
     </select>
+    <insert id="register">
+        INSERT INTO Board (SEQ, POSTER, SUBJECT, CONTENT)
+        VALUES (SEQ_BOARD.NEXTVAL, #{poster}, #{subject}, #{content})
+    </insert>
+    <update id="modify">
+        UPDATE BOARD
+        <set>
+            <if test="subject != null">
+                SUBJECT = #{subject},
+            </if>
+            <if test="content != null">
+                CONTENT = #{content}
+            </if>
+        </set>
+            WHERE POSTER = #{poster}
+    </update>
+    <delete id="delete" >
+        DELETE FROM BOARD WHERE POSTER=#{poster}
+    </delete>
 </mapper>
