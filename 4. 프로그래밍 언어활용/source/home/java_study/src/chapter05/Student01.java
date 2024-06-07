@@ -1,4 +1,4 @@
-package chapter01;
+package chapter05;
 
 public class Student01 {
     int studentID;

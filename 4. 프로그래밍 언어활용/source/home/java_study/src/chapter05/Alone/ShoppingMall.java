@@ -1,4 +1,4 @@
-package chapter01.Alone;
+package chapter05.Alone;
 
 public class ShoppingMall {
     String orderNo;

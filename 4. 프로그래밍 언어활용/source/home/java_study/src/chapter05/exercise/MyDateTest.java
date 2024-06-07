@@ -1,6 +1,4 @@
-package chapter01;
-
-import java.util.Date;
+package chapter05.exercise;
 
 public class MyDateTest {
     public static void main(String[] args) {
