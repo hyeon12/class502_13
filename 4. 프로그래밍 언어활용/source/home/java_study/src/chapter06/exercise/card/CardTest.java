@@ -1,4 +1,4 @@
-package chapter06.exercise;
+package chapter06.exercise.card;
 
 public class CardTest {
     public static void main(String[] args) {

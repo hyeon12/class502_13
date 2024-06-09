@@ -1,4 +1,4 @@
-package chapter06.exercise;
+package chapter06.exercise.card;
 
 public class Card {
     static int serialNum = 1000;
