@@ -18,6 +18,9 @@ public class MyDate {
         return day;
     }
 
+
+    //말일이 31일인 달 | 말일이 30인 달 | 말일이 29일인 달 로 구분하여 switch ~ case 구문 사용
+    //달력에 존재하지 않은 날짜의 경우 isValid = false, 존재하는 날짜의 경우 입력한 날짜 대입할 수 있도록!
     public void setDay(int day){
         switch(month){
             case 1: case 3: case 5: case 7: case 8: case 10: case 12:
@@ -50,6 +53,7 @@ public class MyDate {
         return month;
     }
 
+    //12달 중에서 입력 가능하도록 if문 사용
     public void setMonth(int month){
         if(month < 1 || month > 12){
             isValid = false;
@@ -62,6 +66,7 @@ public class MyDate {
         return year;
     }
 
+    //현재까지의 햇수 중에서 입력하는 경우 그대로, 아직 오지 않은 날짜의 경우 isValid=false;
     public void setYear(int year){
         if(year > LocalDateTime.now().getYear()){
             isValid = false;
@@ -70,6 +75,7 @@ public class MyDate {
         }
     }
 
+    //달력에 존재하는 날짜인지 아닌지!
     public String isValid(){
         if(!isValid){
             return "유효하지 않은 날짜입니다.";
