@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.choongang'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0-M2' //배포시엔 배제
+    testCompileOnly 'jakarta.servlet:jakarta.servlet-api:6.1.0-M2'
+
+    testImplementation 'org.mockito:mockito-core:5.12.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.12.0'
+
+    testImplementation 'com.github.javafaker:javafaker:1.0.2'
+    //테스트할때만 쓰기 위해 testImplementation
+
+    testImplementation platform('org.junit:junit-bom:5.10.2')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+test {
+    useJUnitPlatform()
+}
