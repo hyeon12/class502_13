@@ -23,22 +23,22 @@ public class MyDate {
     //달력에 존재하지 않은 날짜의 경우 isValid = false, 존재하는 날짜의 경우 입력한 날짜 대입할 수 있도록!
     public void setDay(int day){
         switch(month){
-            case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-                if(day <0 || day> 31){
+            case 1, 3, 5, 7, 8, 10, 12:
+                if(day < 1 || day> 31){
                     isValid = false;
                 }else {
                     this.day = day;
                 }
                 break;
             case 4: case 6: case 9: case 11:
-                if(day <0 || day > 30){
+                if(day < 1 || day > 30){
                     isValid = false;
                 } else {
                     this.day = day;
                 }
                 break;
             case 2 :
-                if(day < 0 || day > 29){
+                if(day < 1 || day > 29){
                     isValid = false;
                 }else{
                     this.day = day;
