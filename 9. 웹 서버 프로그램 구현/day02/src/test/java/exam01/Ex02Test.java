@@ -7,26 +7,32 @@ import member.services.LoginService;
 import member.validators.LoginValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.*;
-import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 public class Ex02Test {
 
     private LoginService loginService;
+    @Mock
     private Mailer mailer; //호출되었는지 확인하기 위해 모의객체 생성
+    @Mock
     private HttpServletRequest request; //모의객체 생성
     private Faker faker;
 
     @BeforeEach
     void init(){
         loginService = new LoginService(new LoginValidator());
-        mailer = mock(Mailer.class); //Mockito.mock() 특정 타입의 모의객체 생성1
-        request = mock(HttpServletRequest.class);//모의객체 생성2
+        //mailer = mock(Mailer.class); //Mockito.mock() 특정 타입의 모의객체 생성1
+        //request = mock(HttpServletRequest.class);//모의객체 생성2
+        //모의객체를 따로 생성하지 않고 애노테이션으로 실행 가능하다~! @Mock
         faker = new Faker(Locale.ENGLISH);
 
         //스텁(Stub) 추가
