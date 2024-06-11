@@ -10,8 +10,7 @@ repositories {
 }
 
 dependencies {
-
-    //인텔리제이에서는 jakarta servlet jsp-api 와 api 둘 다 추가해주어야 함!
+    //인텔리제이에서는 jakarta servlet jsp-api 와 api 둘 다 추가해야함!
     compileOnly 'jakarta.servlet.jsp:jakarta.servlet.jsp-api:3.1.1'
     compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
 
