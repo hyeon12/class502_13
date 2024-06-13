@@ -1,12 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <%
-//지역 내의 자원에 접근 가능
-//System.out.println(request);
+    int num1 = 100;
+    int num2 = 200;
+    int result = num1+num2;
+    out.write("result=" + result);
+    out.write("<br>이름 : " + name);
+    print();
 %>
 
+<%-- JSP 주석 ... 번역과정에서 배제되어 java 파일에 X --%>
+<%--
+<br>
+<%=num1%> + <%=num2%> = <%=result%>
+--%>
+
 <%!
-//지역 내 자원에 접근 불가능
-System.out.println(request);
+    //클래스명 바로 아래 - 인스턴스 자원 (멤버 변수, 멤버 함수)
+    String name = "이이름";
+    void print(){
+    System.out.println(name);
+    }
 %>
 
