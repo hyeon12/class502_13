@@ -6,9 +6,10 @@
 
 서울 : <fmt:formatDate value="${date}" type="both" /><br>
 
-<fmt:setTimeZone value="Europe/London" />
-<%--태그 적용 시점부터 계속 적용--%>
+<fmt:timeZone value="Europe/London">
 런던 : <fmt:formatDate value="${date}" type="both" /><br>
+</fmt:timeZone>
 
-<fmt:setTimeZone value="America/New_York" />
-미국 : <fmt:formatDate value="${date}" type="both" /><br>
+<fmt:timeZone value="America/New_York">
+뉴욕 : <fmt:formatDate value="${date}" type="both" /><br>
+</fmt:timeZone>
