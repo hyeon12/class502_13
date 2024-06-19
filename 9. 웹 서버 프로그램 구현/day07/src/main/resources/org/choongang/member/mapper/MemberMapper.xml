@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--매퍼 XML 파일과 연결될 매퍼 인터페이스의 경로-->
+<!--그럼 xml 경로는 어디에? -> mybatis.xml 의 mapper 태그 안에 작성 -->
+<mapper namespace="org.choongang.member.mapper.MemberMapper">
+
+</mapper>
