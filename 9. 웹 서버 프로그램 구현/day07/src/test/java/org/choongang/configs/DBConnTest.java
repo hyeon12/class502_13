@@ -14,7 +14,7 @@ public class DBConnTest {
     void dbConnectionTest(){
         //실행 코드 실행 시, 예외가 발생하지 않으면 통과
         assertDoesNotThrow(()->{
-            SqlSession session = DBConn.sqlSession();
+            SqlSession session = DBConn.getSession();
             System.out.println(session);
         });
     }

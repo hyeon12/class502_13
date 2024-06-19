@@ -1,5 +1,8 @@
 package org.choongang.member.services;
 
+import org.apache.ibatis.session.SqlSession;
+import org.choongang.global.configs.DBConn;
+import org.choongang.member.mapper.MemberMapper;
 import org.choongang.member.validators.JoinValidator;
 
 // 회원쪽 기능을 제공하는 provider
@@ -18,13 +21,18 @@ public class MemberServiceProvider {
         return instance;
     }
 
+    public MemberMapper memberMapper(){
+        SqlSession session = DBConn.getSession();
+        return session.getMapper(MemberMapper.class);
+    }
+
     // ▽ 객체 조립할 재료 ▽
     public JoinValidator joinValidator(){
-        return new JoinValidator();
+        return new JoinValidator(memberMapper());
         //회원가입 검증 validator
     }
 
     public JoinService joinService(){
-        return new JoinService(joinValidator());
+        return new JoinService(joinValidator(), memberMapper());
     }
 }

@@ -1,12 +1,14 @@
 package org.choongang.member.tests;
 
 import com.github.javafaker.Faker;
+import org.choongang.global.configs.DBConn;
 import org.choongang.global.exceptions.BadRequestException;
 import org.choongang.member.controllers.RequestJoin;
+import org.choongang.member.entities.Member;
 import org.choongang.member.exceptions.DuplicatedMemberException;
+import org.choongang.member.mapper.MemberMapper;
 import org.choongang.member.services.JoinService;
 import org.choongang.member.services.MemberServiceProvider;
-import org.choongang.member.validators.JoinValidator;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,11 +25,12 @@ public class JoinServiceTest {
     //테스트 끝나면 -- 서비스 완성
 
     private JoinService service;
-    private JoinValidator validator;
+    private MemberMapper mapper;
 
     @BeforeEach //각 단위테스트 이전 실행
     void init(){
         service = MemberServiceProvider.getInstance().joinService();
+        mapper = DBConn.getSession().getMapper(MemberMapper.class);
     }
 
     RequestJoin getData(){
@@ -47,10 +50,15 @@ public class JoinServiceTest {
     @Test
     @DisplayName("회원가입 성공시 예외가 발생하지 않음")
     void successTest(){
+        RequestJoin form = getData();
         assertDoesNotThrow(()->{
             //JoinService service = new JoinService();
-            service.process(getData());
+            service.process(form);
         });
+
+        //가입된 이메일로 회원이 조회 되는지 체크 - 조회 테스트
+        Member member = mapper.get(form.getEmail());
+        assertEquals(form.getEmail(), member.getEmail());
     }
 
     @Test
@@ -139,11 +147,12 @@ public class JoinServiceTest {
     @Test
     @DisplayName("이미 가입된 메일인 경우 DuplicatedMemberException 발생")
     void duplicateEmailTest(){
-        //이미 가입된 경우 -> join 통과x 하도록
+        //회원 중복 테스트 : 이미 가입된 경우 -> join 통과x 하도록
+        MemberServiceProvider provider = MemberServiceProvider.getInstance();
         assertThrows(DuplicatedMemberException.class, ()->{
            RequestJoin form = getData();
-           service.process(form);
-           service.process(form);
+           provider.joinService().process(form);
+           provider.joinService().process(form);
         });
     }
 }

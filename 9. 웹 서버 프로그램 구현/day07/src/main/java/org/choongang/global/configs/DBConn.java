@@ -30,7 +30,7 @@ public class DBConn {
         return factory.openSession(autoCommit);
     }
 
-    public static SqlSession sqlSession(){
+    public static SqlSession getSession(){
         return getSession(true);
     }
 }

@@ -5,8 +5,18 @@ import org.choongang.global.validators.EmailValidator;
 import org.choongang.global.validators.RequiredValidator;
 import org.choongang.global.validators.Validator;
 import org.choongang.member.controllers.RequestJoin;
+import org.choongang.member.exceptions.DuplicatedMemberException;
+import org.choongang.member.mapper.MemberMapper;
+import org.choongang.member.services.JoinService;
 
 public class JoinValidator implements Validator<RequestJoin>, RequiredValidator, EmailValidator {
+
+    private MemberMapper mapper;
+
+    public JoinValidator(MemberMapper mapper){
+        this.mapper = mapper;
+    }
+
     @Override
     public void check(RequestJoin form) {
         /* 검증을 위해 필요한 재료 가져오기 */
@@ -34,5 +44,9 @@ public class JoinValidator implements Validator<RequestJoin>, RequiredValidator,
 
         //비밀번호 자리수 체크
         checkTrue(password.length() >= 8, new BadRequestException("비밀번호는 8자리 이상 입력하세요."));
+
+        //이미 가입된 회원인지 체크
+        System.out.println("exists:" + mapper.exist(email));
+        checkTrue(mapper.exist(email) == 0L, new DuplicatedMemberException());
     }
 }
