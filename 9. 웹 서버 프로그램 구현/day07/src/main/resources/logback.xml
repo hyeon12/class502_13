@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d %5p %t - %m%n</pattern>
+            <!-- d:날짜,시간 / p:오류레벨 / t:스레드 / m:메세지 -->
+        </encoder>
+    </appender>
+
+    <!-- root : 전체 로그 레벨 지정(최상위 로거의 기본 로그 레벨) -->
+    <root level="info">
+        <appender-ref ref="stdout"/>
+    </root>
+
+    <!-- logger : 특정 패키지/클래스에 대한 로깅 설정 -->
+    <logger name="org.choongang.member.mapper" level="DEBUG" />
+
+
+</configuration>
