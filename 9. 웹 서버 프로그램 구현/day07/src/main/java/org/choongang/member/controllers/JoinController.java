@@ -1,5 +1,6 @@
 package org.choongang.member.controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,9 @@ public class JoinController extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //회원가입 양식
 
+        //버퍼 출력
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/templates/member/join.jsp");
+        rd.forward(req, resp); //새로운 요청 응답 처리
     }
 
     @Override

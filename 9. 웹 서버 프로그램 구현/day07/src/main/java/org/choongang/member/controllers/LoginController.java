@@ -1,5 +1,6 @@
 package org.choongang.member.controllers;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,6 +15,8 @@ public class LoginController extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //로그인 양식
 
+        RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/templates/member/login.jsp");
+        rd.forward(req, resp);
     }
 
     @Override
