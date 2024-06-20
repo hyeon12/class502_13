@@ -6,7 +6,7 @@
 <layout:main title="회원가입">
     <h1>회원가입</h1>
     <%-- form 태그로 감싸줘야 데이터 전송이 가능 --%>
-    <form method="post" action="${actionUrl}" autoComplete="off">
+    <form method="post" action="${actionUrl}" autoComplete="off" target="ifrmProcess">
         <dl>
             <dt>이메일</dt>
             <dd>

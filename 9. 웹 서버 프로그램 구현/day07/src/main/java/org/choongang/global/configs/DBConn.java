@@ -29,6 +29,7 @@ public class DBConn {
     public static SqlSession getSession(boolean autoCommit){
         //환경변수 가져오는..! System.getenv()
         //mode가 test이면 false로 바꿔주는 로직
+        //Test환경의 환경변수 mode=test로 설정했음
         String mode = System.getenv("mode");
         if(mode != null && mode.equals("test")) autoCommit = false;
 
