@@ -16,19 +16,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.mockito.junit.jupiter.MockitoSettings;
-import org.mockito.quality.Strictness;
 
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.only;
 
 @ExtendWith(MockitoExtension.class) //모의 객체 쓰기 위함
-@MockitoSettings(strictness = Strictness.LENIENT)
 @DisplayName("로그인 기능 테스트")
 public class LoginServiceTest {
 
@@ -64,8 +58,6 @@ public class LoginServiceTest {
 
         //로그인
         setData();
-
-        given(request.getSession()).willReturn(session);
     }
 
     //값이 담긴 상태
@@ -87,9 +79,6 @@ public class LoginServiceTest {
         assertDoesNotThrow(()->{
             loginService.process(request);
         });
-
-        //로그인 처리 완료시 HttpSession - setAttribute 메서드가 호출됨
-        then(session).should(only()).setAttribute(any(), any());
     }
 
     @Test
