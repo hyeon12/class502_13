@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Locale;
@@ -154,5 +155,24 @@ public class JoinServiceTest {
            provider.joinService().process(form);
            provider.joinService().process(form);
         });
+
+//        assertThrows(DuplicatedMemberException.class, new Executable() {
+//            @Override
+//            public void execute() throws Throwable {
+//
+//            }
+//        });
+//
+//        assertThrows() 지역 내부에 정의된 상태
+//        Executable executable = new Executable() {
+//            @Override
+//            public void execute() throws Throwable {
+//
+//            }
+//        };
+//      -------------- 간소화...? ------------------
+////        Executable executable = () -> {
+////
+////        };
     }
 }
