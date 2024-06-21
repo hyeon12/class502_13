@@ -28,6 +28,6 @@ public class LoginService {
 
         //개인이 사용할 수 있는 공간(세션)에 유지하기 위해....!!!
         HttpSession session = request.getSession();
-        session.setAttribute("member", member);
+        session.setAttribute("member", member);//member 들어가있으면 login 상태인것!(index.jsp 참고)
     }
 }

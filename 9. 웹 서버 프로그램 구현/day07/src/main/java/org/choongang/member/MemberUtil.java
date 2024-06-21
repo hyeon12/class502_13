@@ -8,7 +8,7 @@ public class MemberUtil {
     //로그인 여부 체크 메서드
     public static boolean isLogin(HttpServletRequest request){
         //Member member = getMember(request); - 반환값만 필요하므로 바로 쓰기
-        return getMember(request) != null;
+        return getMember(request) != null;//로그인상태
     }
 
     //회원정보 가져올 수 있는 메서드
@@ -16,5 +16,6 @@ public class MemberUtil {
         HttpSession session = request.getSession();
         Member member = (Member)session.getAttribute("member");
         return member;
+        //getAttribute("member") member 속성값 가져옴
     }
 }

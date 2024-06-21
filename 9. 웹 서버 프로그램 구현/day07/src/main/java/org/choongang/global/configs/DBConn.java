@@ -9,8 +9,10 @@ import java.io.IOException;
 import java.io.Reader;
 
 //DB 설정파일
+//데이터베이스와의 연결을 관리하는 클래스 DBConn
 public class DBConn {
     private static SqlSessionFactory factory;
+    //SqlSessionFactory : SQL 매핑을 실행하는데 사용 (DB와 JAVA간 매핑 역할)
 
     static{
         try {
@@ -29,7 +31,7 @@ public class DBConn {
     public static SqlSession getSession(boolean autoCommit){
         //환경변수 가져오는..! System.getenv()
         //mode가 test이면 false로 바꿔주는 로직
-        //Test환경의 환경변수 mode=test로 설정했음
+        //Test환경의 환경변수 mode=test로 설정했음 -> (변경)설정삭제
         String mode = System.getenv("mode");
         if(mode != null && mode.equals("test")) autoCommit = false;
 

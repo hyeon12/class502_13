@@ -24,6 +24,7 @@ public class MemberMapperTest {
     void init(){
         session = DBConn.getSession(false);
         mapper = session.getMapper(MemberMapper.class);
+        //getMapper - 매퍼인터페이스 가져옴. 매퍼 인터페이스? SQL쿼리와 자바 메서드를 매핑->상호작용역할
     }
 
     @Test
