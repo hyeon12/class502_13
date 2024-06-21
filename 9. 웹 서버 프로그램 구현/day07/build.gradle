@@ -36,6 +36,9 @@ dependencies {
     //jbcrypt : 암호화
     implementation 'org.mindrot:jbcrypt:0.4'
 
+    //multipart 파일 업로드 라이브러리
+    implementation 'org.apache.commons:commons-fileupload2-jakarta-servlet6:2.0.0-M2'
+
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 
