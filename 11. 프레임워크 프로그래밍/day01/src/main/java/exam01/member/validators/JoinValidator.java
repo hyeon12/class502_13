@@ -5,13 +5,14 @@ import exam01.member.controllers.RequestJoin;
 import exam01.member.dao.MemberDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JoinValidator implements Validator<RequestJoin> {
 
     private MemberDao memberDao;
 
     @Autowired
-    @Qualifier("memberDao")
     public void setMemberDao(MemberDao memberDao){
         this.memberDao = memberDao;
     }

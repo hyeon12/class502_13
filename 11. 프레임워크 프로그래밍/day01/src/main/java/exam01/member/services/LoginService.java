@@ -1,8 +1,8 @@
 package exam01.member.services;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LoginService {
 
-    public LoginService(){
-        System.out.println("로그인서비스");
-    }
 }

@@ -1,6 +1,7 @@
 package exam01.member.dao;
 
 import exam01.member.entities.Member;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,7 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 //DAO(Data Access Object)
-public class MemberDao {
+@Component
+public class MemberDao { // 빈 이름 - memberDao
 
     private static Map<String, Member> members = new HashMap<>();
 
