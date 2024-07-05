@@ -4,13 +4,18 @@ import exam01.member.controllers.RequestJoin;
 import exam01.member.dao.MemberDao;
 import exam01.member.entities.Member;
 import exam01.member.validators.JoinValidator;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.time.LocalDateTime;
 
 public class JoinService {
 
     //구성 - 다른객체를 멤버 변수로 포함하여, 기능 확장/조합하는 디자인 패턴
+    @Autowired
     private JoinValidator validator;
+    @Autowired
+    @Qualifier("memberDao")
     private MemberDao memberDao;
 
 //   연관 관계 (의존객체 없어도 객체생성 가능)
@@ -18,11 +23,11 @@ public class JoinService {
 //        this.validator = validator;
 //    }
 
-    //의존 관계 (의존객체 필수, 없으면 객체 생성 X)
-    public JoinService(JoinValidator validator, MemberDao memberDao){
-        this.validator = validator;
-        this.memberDao = memberDao;
-    }
+//    //의존 관계 (의존객체 필수, 없으면 객체 생성 X)
+//    public JoinService(JoinValidator validator, MemberDao memberDao){
+//        this.validator = validator;
+//        this.memberDao = memberDao;
+//    }
 
     //회원가입 서비스를 처리하기 위해 필요한 객체 = 의존객체
     public void process(RequestJoin form){
