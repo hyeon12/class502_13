@@ -1,16 +1,22 @@
 package member.services;
 
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import member.controllers.RequestJoin;
 import member.dao.MemberDao;
 import member.entities.Member;
 import member.validators.JoinValidator;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+@RequiredArgsConstructor
+@Service
 public class JoinService {
 
-    private JoinValidator validator;
+    private final JoinValidator validator;
 
+    @NonNull
     private MemberDao memberDao;
 
     public void process(RequestJoin form) {
