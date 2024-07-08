@@ -14,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class AppCtx2 {
 
     @Bean
+    @Qualifier("mDao")
     public MemberDao memberDao(){
         return new MemberDao();
     }

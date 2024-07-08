@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@ComponentScan(basePackages = "exam01.member")
+//@ComponentScan(basePackages = "exam01.member") - 스캔할 범위를 지정
 //@ComponentScan(value = "exam01.member")
 @ComponentScan("exam01.member")
 public class AppCtx3 {
