@@ -16,6 +16,11 @@ public class AppCtx {
         return new ProxyCalculator2();
     }
 
+    @Bean
+    public ProxyCache proxyCache(){
+        return new ProxyCache();
+    }
+
     /*
     @Bean //수동 등록 빈
     public RecCalculator cal (){

@@ -3,15 +3,21 @@ package config;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Pointcut;
+
+import org.springframework.core.annotation.Order;
 
 @Aspect
+@Order(2)
 public class ProxyCalculator2 {
 
+    /*
     @Pointcut("execution(* exam01..*(..))")
     public void publicTarget(){}
-
-    @Around("publicTarget()")
+     */
+    //@Around("publicTarget()")
+    //@Around("execution(* exam01..*(..))")
+    //@Around("config.CommonPointcut.publicTarget()")
+    @Around("CommonPointcut.publicTarget()")
     public Object process(ProceedingJoinPoint joinPoint) throws Throwable {
         long stime = System.nanoTime();
         try {
