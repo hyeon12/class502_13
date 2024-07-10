@@ -31,7 +31,8 @@ public class Ex01 {
 
     @Test
     void test2(){
-        List<Member> members = jdbcTemplate.query("SELECT * FROM MEMBER", this:: mapper);
+        //List<Member> members = jdbcTemplate.query("SELECT * FROM MEMBER", (rs, num) -> mapper(rs,num));
+        List<Member> members = jdbcTemplate.query("SELECT * FROM MEMBER", this::mapper);
 
         members.forEach(System.out::println);
     }
