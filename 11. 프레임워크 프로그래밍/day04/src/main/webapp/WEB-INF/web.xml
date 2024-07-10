@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                      https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>
+            org.springframework.web.servlet.DispatcherServlet
+        </servlet-class>
+        <init-param>
+            <!--스프링 컨테이너-->
+            <param-name>contextClass</param-name>
+            <param-value>
+                org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+            </param-value>
+        </init-param>
+        <init-param>
+            <!-- 설정 위치(패키지명 포함한 클래스명) -->
+            <param-name>contextConfigLocation</param-name>
+            <param-value>
+                configs.MvcConfig
+            </param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <!-- 모든 요청(/)을 받을 수 있는 창구(dispatcher) -->
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <filter>
+        <!-- 스프링이 제공한 편의기능 -->
+        <filter-name>encodingFilter</filter-name>
+        <filter-class>
+            org.springframework.web.filter.CharacterEncodingFilter
+            <!-- 한글, 유니코드 바이트 문자 깨짐 방지 역할 하는 필터 -->
+        </filter-class>
+        <!-- 어떤 설정 넣을건지 -->
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encodingFilter</filter-name>
+        <url-pattern>/*</url-pattern> <!-- /* : 모든 파일, 모든 경로 -->
+    </filter-mapping>
+</web-app>
