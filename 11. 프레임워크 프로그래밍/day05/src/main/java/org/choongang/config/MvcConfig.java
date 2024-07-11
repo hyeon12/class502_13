@@ -1,7 +1,9 @@
 package org.choongang.config;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -10,6 +12,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration //웹에 대한 설정 클래스
 @EnableWebMvc
 @ComponentScan("org.choongang") //스캔 범위
+@MapperScan("org.choongang") //매퍼 스캔 범위
+@Import(DBConfig.class)
 public class MvcConfig implements WebMvcConfigurer {
     //웹 설정에 대한 틀 (@interface WebMvcConfigurer)
     //HandlerMapping, HandlerAdapter, ViewResolver
