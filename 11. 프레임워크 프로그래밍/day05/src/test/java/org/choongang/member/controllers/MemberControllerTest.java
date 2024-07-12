@@ -12,6 +12,9 @@ import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.Locale;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
@@ -38,6 +41,15 @@ public class MemberControllerTest {
                         .contentType(MediaType.APPLICATION_JSON_VALUE) // content-Type 상수 형태로 사용
                 )
                 .andDo(print()); //요청에 대한 모든 자세한 정보가 나옴. controller, 예외, 기타 정보 …
+    }
+
+    @Test
+    void test2() throws Exception {
+        mockMvc.perform(get("/member/join")
+                        .header("Accept-Language", Locale.KOREAN.getLanguage())
+                )
+                .andDo(print());
+
     }
 
 }
