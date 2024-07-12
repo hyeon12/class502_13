@@ -10,7 +10,7 @@ ${command}
     <dl>
         <dt>이메일</dt>
         <dd>
-            <form:input path="email" />
+            <form:input path="email" cssClass="input-txt" cssStyle="border-color : red;" />
             <%--<input type="text" name="email" value="${requestJoin.email}">--%>
         </dd>
     </dl>
@@ -35,8 +35,24 @@ ${command}
     <dl>
         <dt>취미</dt>
         <dd>
-            ${requestJoin.hobby[0]}
+            <form:radiobuttons path="hobby" items="${hobbies}" />
+        <%--
+            <form:select path="hobby">
+                <option value=''>- 선택하세요 -</option>
+                <form:option value="hobby0" label="취미0" />
+                <form:options items="${hobbies2}" itemLabel="code" itemValue="value" />
+            </form:select>
+
+            <form:select path="hobby">
+                <option value=''>- 선택하세요 -</option>
+                <form:options items="${hobbies}"/>
+            </form:select>
+
+            <form:select path="hobby" items="${hobbies}" />
+
+            ${command.hobby[0]}
             <form:checkboxes path="hobby" items="${hobbies}" />
+            --%
         </dd>
     </dl>
     <dl>
