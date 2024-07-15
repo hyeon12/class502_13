@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration //DB 설정 클래스
 @EnableTransactionManagement
-@MapperScan("org.choongang")
+@MapperScan("org.choongang.member.mappers")
 @EnableJdbcRepositories("org.choongang")
 public class DBConfig extends AbstractJdbcConfiguration {
 
