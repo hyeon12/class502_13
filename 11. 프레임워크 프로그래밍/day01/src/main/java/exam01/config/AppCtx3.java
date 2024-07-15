@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
 //@ComponentScan(value = "exam01.member")
 @ComponentScan("exam01.member")
 public class AppCtx3 {
-    @Bean
+    //@Bean
     public MemberDao memberDao() {
         System.out.println("수동 등록 빈!");
         return new MemberDao();

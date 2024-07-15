@@ -14,12 +14,12 @@ import java.time.format.DateTimeFormatter;
 public class AppCtx2 {
 
     @Bean
-    @Qualifier("mDao")
+    //@Qualifier("mDao")
     public MemberDao memberDao(){
         return new MemberDao();
     }
 
-    @Bean
+    //@Bean
     public MemberDao memberDao2(){
         return new MemberDao();
     }
@@ -45,7 +45,7 @@ public class AppCtx2 {
     }
 
 
-    @Bean // 자바 JDK, 외부 라이브러리는 수동 등록이 필수
+    //@Bean // 자바 JDK, 외부 라이브러리는 수동 등록이 필수
     public DateTimeFormatter dateTimeFormatter(){ // 형식화 클래스 Formatter
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
         return formatter;
