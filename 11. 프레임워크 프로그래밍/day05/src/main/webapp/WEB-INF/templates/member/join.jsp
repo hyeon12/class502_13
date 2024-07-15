@@ -24,7 +24,7 @@
         </dt>
         <dd>
             <form:password path="password" />
-            <form:errors path="password" element="div" delimiter="" cssClass="e" cssStyle="color:red;"/>
+            <form:errors path="password" element="div" delimiter="" />
         </dd>
     </dl>
     <dl>
