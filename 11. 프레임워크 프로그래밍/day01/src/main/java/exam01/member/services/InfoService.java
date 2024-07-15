@@ -26,11 +26,16 @@ public class InfoService {
     @Autowired // DateTimeFormatter @Bean 이 없으면 -> 호출 X
     public void setFormatter(Optional<DateTimeFormatter> opt){
         System.out.println("호출!");// Bean X 상태에서는 호출X
+
+        /*
         if(opt.isPresent()) {
             this.formatter = opt.get();
         }else{
             this.formatter = null;
         }
+
+         */
+        this.formatter = opt.orElse(null);
     }
 
 //    @Autowired
