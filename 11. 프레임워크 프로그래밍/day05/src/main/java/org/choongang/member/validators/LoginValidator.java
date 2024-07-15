@@ -40,30 +40,52 @@ public class LoginValidator implements Validator {
         String email = form.getEmail();
         String password = form.getPassword();
 
-        if(StringUtils.hasText(email)){
+
+        // 강사님 코드
+        if(StringUtils.hasText(email)) {
             Member member = mapper.get(email);
-            if(member == null){
+            if (member == null) {
                 //errors.rejectValue("email", "Check.emailPassword");
                 errors.reject("Check.emailPassword");
             }
 
-            if(member != null && StringUtils.hasText(password) && !BCrypt.checkpw(password, member.getPassword())){
+            if (member != null && StringUtils.hasText(password) && !BCrypt.checkpw(password, member.getPassword())) {
                 //errors.rejectValue("password", "Check.emailPassword");
                 errors.reject("Check.emailPassword");
             }
-
         }
 
+        /*
+        if(StringUtils.hasText(email)) {
+            Member member = mapper.get(email);
+            if (member == null) {
+                //errors.rejectValue("email", "Check.emailPassword");
+                errors.rejectValue("password", "MisMatch");
+            }
+
+            if (member != null && StringUtils.hasText(password) && !BCrypt.checkpw(password, member.getPassword())) {
+                //errors.rejectValue("password", "Check.emailPassword");
+                errors.rejectValue("password", "MisMatch");
+            }
+        }
+
+         */
 
 
+        // 처음에 생각 했었던 코드 ...
         // 회원 조회 StringUtils.hasText(email) && mapper.exists(email) != 0L
         /*
-        if(!StringUtils.hasText(email) && mapper.exists(email)!=0L){
+        if(StringUtils.hasText(email) && mapper.exists(email)!=1L){
             errors.rejectValue("email", "MisMatch");
         }
 
-        if(!StringUtils.hasText(password) && !password.equals(mapper.get(password))){
+        if(StringUtils.hasText(password) && !password.equals(mapper.get(password))){
+        -> 해시화된 비밀번호이므로, equals로 비교할 수 없음...!
+
+            errors.rejectValue("password", "MisMatch");
         }
+
+        -> MisMatch.RequestLogin=이메일 또는 비밀번호가 일치하지 않습니다.
          */
     }
 }
