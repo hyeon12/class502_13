@@ -25,9 +25,8 @@ public class CommonControllerAdivce {
         }
 
         ModelAndView mv = new ModelAndView();
-        mv.setStatus(status);
-
         mv.setViewName("error/common");
+        mv.setStatus(status);
 
         return mv;
     }
