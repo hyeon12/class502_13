@@ -12,7 +12,7 @@ import org.springframework.web.servlet.config.annotation.*;
 @Configuration //웹에 대한 설정 클래스
 @EnableWebMvc
 @ComponentScan("org.choongang") //스캔 범위
-@Import(value={DBConfig.class, MessageConfig.class})
+@Import(value={DBConfig.class, MessageConfig.class, InterceptorConfig.class})
 @RequiredArgsConstructor
 public class MvcConfig implements WebMvcConfigurer {
     //웹 설정에 대한 틀 (@interface WebMvcConfigurer)
