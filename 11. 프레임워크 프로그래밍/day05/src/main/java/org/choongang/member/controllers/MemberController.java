@@ -113,10 +113,11 @@ public class MemberController {
         log.info("email:{}, email2:{}", email, email2);
     }
 
-    @ExceptionHandler(Exception.class)
-    public String errorHandler(Exception e, HttpServletRequest request, HttpServletResponse response, Model model){
+    @ExceptionHandler(BadRequestException.class)
+    public String errorHandler(BadRequestException e, HttpServletRequest request, HttpServletResponse response, Model model){
 
         e.printStackTrace(); // 발생한 예외 정보를 알 수 있음.
+        log.info("memberController에서 유입");
         return "error/common";
     }
 
