@@ -72,7 +72,6 @@ public class MemberController {
         if(errors.hasErrors()){
             return "member/login";
         }
-
         //로그인 처리
         loginService.process(form);
 
@@ -83,6 +82,26 @@ public class MemberController {
     public String logout(HttpSession session){
         session.invalidate(); //세션 비우기
         return "redirect:/member/login";
+    }
+
+    @GetMapping("/list")
+    public String list(@ModelAttribute @Valid MemberSearch search, Errors errors){
+        /**
+         * @ModelAttribute
+         * 객체 초기화 - 파라미터가 없어도 객체가 null이 되지 않도록 보장
+         * 자동 바인딩 - 요청 파라미터를 객체 필드에 자동으로 바인딩
+         * 모델 추가 - 객체를 모델에 자동으로 추가, 뷰에서 참조 가능
+         * */
+
+        log.info(search.toString());
+
+        return "member/list";
+    }
+
+    @ResponseBody //반환값 void 하기 위한 ... json 에서 배운다...
+    @GetMapping("/info/{id}/{id2}")
+    public void info(@PathVariable("id") String email, @PathVariable("id2") String email2){
+        log.info("email:{}, email2:{}", email, email2);
     }
 
     /*
