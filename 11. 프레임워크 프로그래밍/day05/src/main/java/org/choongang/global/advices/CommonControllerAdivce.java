@@ -28,6 +28,8 @@ public class CommonControllerAdivce {
         mv.setViewName("error/common");
         mv.setStatus(status);
 
+        //mv.addObject("status", status); - EL 추가
+
         return mv;
     }
 }
