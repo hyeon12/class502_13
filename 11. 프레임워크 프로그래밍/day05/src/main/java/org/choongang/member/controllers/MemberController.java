@@ -1,15 +1,19 @@
 package org.choongang.member.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.choongang.global.exceptions.BadRequestException;
 import org.choongang.member.entities.Member;
 import org.choongang.member.services.JoinService;
 import org.choongang.member.services.LoginService;
 import org.choongang.member.validators.JoinValidator;
 import org.choongang.member.validators.LoginValidator;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -95,14 +99,31 @@ public class MemberController {
 
         log.info(search.toString());
 
+        boolean result = false;
+        if(!result){
+            throw new RuntimeException("⁉예외 발생🚨");
+        }
+
         return "member/list";
     }
 
-    @ResponseBody //반환값 void 하기 위한 ... json 에서 배운다...
-    @GetMapping("/info/{id}/{id2}")
-    public void info(@PathVariable("id") String email, @PathVariable("id2") String email2){
+    @ResponseBody //반환값 void 하기 위한 @ -> json 에서 배운다...
+    @GetMapping({"/info/{id}/{id2}", "/info/{id}"})
+    public void info(@PathVariable("id") String email, @PathVariable(name="id2", required = false) String email2){
         log.info("email:{}, email2:{}", email, email2);
     }
+
+    @ExceptionHandler(Exception.class)
+    public String errorHandler(Exception e, HttpServletRequest request, HttpServletResponse response, Model model){
+
+        e.printStackTrace(); // 발생한 예외 정보를 알 수 있음.
+        return "error/common";
+    }
+
+//    @ExceptionHandler(RuntimeException.class)
+//    public String errorHandler2(){
+//        return "error/common";
+//    }
 
     /*
     @InitBinder
