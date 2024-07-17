@@ -3,16 +3,22 @@ package org.choongang.config;
 import lombok.RequiredArgsConstructor;
 import org.choongang.member.validators.JoinValidator;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.*;
 
 @Configuration //웹에 대한 설정 클래스
 @EnableWebMvc
 @ComponentScan("org.choongang") //스캔 범위
-@Import(value={DBConfig.class, MessageConfig.class, InterceptorConfig.class})
+@Import(value={DBConfig.class,
+        MessageConfig.class,
+        InterceptorConfig.class,
+        FileConfig.class})
 @RequiredArgsConstructor
 public class MvcConfig implements WebMvcConfigurer {
     //웹 설정에 대한 틀 (@interface WebMvcConfigurer)
@@ -53,5 +59,12 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/templates/", ".jsp");
+    }
+
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertyConfigurer(){
+        PropertySourcesPlaceholderConfigurer conf = new PropertySourcesPlaceholderConfigurer();
+        conf.setLocations(new ClassPathResource("application.properties"));
+        return conf;
     }
 }
