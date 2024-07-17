@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <script src="todo.js"></script>
+    </head>
+    <body>
+        <form name="frmTodo" method="post" autocomplete="off">
+            <input type="text" name="todo" placeholder="할일을 입력하세요.">
+            <button type="submit">등록하기</button>
+        </form>
+        <ul id="schedules">
+
+        </ul>
+        <!--템플릿을 쓰고 보여주지 않는 방식으로 쓸 때는 script 태그 안에!-->
+        <!--script 태그 -> script 문법으로 써야 함 => text/html로 변경-->
+        <script type="text/html" id="tpl">
+            <li>
+                #todo# <!-- #치환 코드# -->
+                <button type="button">삭제</button>
+            </li>
+        </script>
+    </body>
+</html>
