@@ -25,10 +25,10 @@ import java.util.List;
 @Configuration //웹에 대한 설정 클래스
 @EnableWebMvc
 @ComponentScan("org.choongang") //스캔 범위
-@Import(value={DBConfig.class,
+/*@Import(value={DBConfig.class,
         MessageConfig.class,
         InterceptorConfig.class,
-        FileConfig.class})
+        FileConfig.class})*/
 @RequiredArgsConstructor
 public class MvcConfig implements WebMvcConfigurer {
     //웹 설정에 대한 틀 (@interface WebMvcConfigurer)
@@ -66,10 +66,12 @@ public class MvcConfig implements WebMvcConfigurer {
                 .setViewName("mypage/index");
     }
 
+    /*
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
         registry.jsp("/WEB-INF/templates/", ".jsp");
     }
+    */
 
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertyConfigurer(){

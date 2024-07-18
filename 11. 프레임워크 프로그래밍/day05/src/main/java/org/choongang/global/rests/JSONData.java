@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+@RequiredArgsConstructor //final 과 NonNull 지정 필드를 매개 변수로!
 public class JSONData {
     // 성공 시 데이터 전송 | 실패 시 메세지 출력
     private HttpStatus status = HttpStatus.OK; // Http 상태 코드 (데이터 제공 -> 보통 OK)
