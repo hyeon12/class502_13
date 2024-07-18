@@ -1,7 +1,12 @@
 package org.choongang.member.api.controllers;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.choongang.global.Utils;
+import org.choongang.global.exceptions.BadRequestException;
+import org.choongang.global.exceptions.CommonException;
+import org.choongang.global.rests.JSONData;
 import org.choongang.member.controllers.RequestJoin;
 import org.choongang.member.entities.Member;
 import org.choongang.member.mappers.MemberMapper;
@@ -10,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -24,9 +30,21 @@ public class ApiMemberController {
 
     private final MemberMapper mapper;
     private final JoinService joinService;
+    private final Utils utils;
 
     @PostMapping // POST /api/member
-    public ResponseEntity join(@RequestBody RequestJoin form){
+    public ResponseEntity join(@RequestBody @Valid RequestJoin form, Errors errors){
+        //log.info("" + errors.hasErrors());
+        //errors.getAllErrors().forEach(System.out::println);
+        if(errors.hasErrors()) {
+            throw new BadRequestException(utils.getErrorMessages(errors));
+        }
+
+        boolean result= false;
+        if (!result){
+            throw new BadRequestException("예외 테스트");
+        }
+
         joinService.process(form);
 
         // 응답 코드 201, 출력 바디 x
@@ -34,15 +52,15 @@ public class ApiMemberController {
     }
 
     @GetMapping("/info/{email}")
-    public Member info(@PathVariable("email") String email){
+    public JSONData info(@PathVariable("email") String email){
         // Content-Type: application/json
         Member member = mapper.get(email);
 
-        return member;
+        return new JSONData(member);
     }
 
     @GetMapping("/list")
-    public ResponseEntity<List<Member>> list(){
+    public ResponseEntity<JSONData> list(){
         List<Member> members = IntStream.rangeClosed(1, 10)
                 .mapToObj(i -> Member.builder()
                         .email("user" + i + "@test.org")
@@ -56,7 +74,7 @@ public class ApiMemberController {
         headers.add("t1", "v1");
         headers.add("t2", "v2");
 
-        return new ResponseEntity<>(members, headers, HttpStatus.OK);
+        return new ResponseEntity<>(new JSONData(members), headers, HttpStatus.OK);
     }
 
     @GetMapping(path="/test", produces = "text/html;charset=UTF-8")
@@ -70,4 +88,26 @@ public class ApiMemberController {
         // Content-Type: text/plain
         log.info("test2 ... ");
     }
+
+    /*
+    @ExceptionHandler //-> RestController 쪽에서는 JSON 형식으로 응답..
+    public ResponseEntity<JSONData> errorHandler(Exception e){
+
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; //500
+
+        if(e instanceof CommonException commonException){
+            status = commonException.getStatus();
+        }
+
+        //JSON 데이터
+        JSONData data = new JSONData();
+        data.setSuccess(false); //실패일 경우
+        data.setMessage(e.getMessage()); //메시지 출력
+        data.setStatus(status); //상태 코드
+
+        e.printStackTrace();
+
+        return ResponseEntity.status(status).body(data);
+    }
+     */
 }

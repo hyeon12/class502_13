@@ -44,10 +44,10 @@ public class ApiMemberControllerTest {
         om.registerModule(new JavaTimeModule());
 
         RequestJoin form = new RequestJoin();
-        form.setEmail("user04@test.org");
-        form.setPassword("12345678");
-        form.setConfirmPassword("12345678");
-        form.setUserName("사용자04");
+        //form.setEmail("user04@test.org");
+        //form.setPassword("12345678");
+        //form.setConfirmPassword("12345678");
+        //form.setUserName("사용자04");
         form.setAgree(true);
 
         String json = om.writeValueAsString(form);
