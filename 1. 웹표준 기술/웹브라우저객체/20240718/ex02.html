@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <style>
+            .box{
+                padding: 150px;
+            }
+            .box1{
+                background-color: rgb(230, 231, 169);
+            }
+            .box2{
+                background-color: rgb(131, 214, 207);
+            }
+            .box3{
+                background-color: rgb(233, 197, 130);
+            }
+        </style>
+        <script>
+            window.addEventListener("DOMContentLoaded", function(){
+                const box1El = document.querySelector(".box1");
+                box1El.addEventListener("click", function(){
+                    console.log("BOX1 클릭");
+                });
+
+                const box2El = document.querySelector(".box2");
+                box2El.addEventListener("click", function(){
+                    console.log("BOX2 클릭");
+                }); //box2 - 캡쳐링 단계
+                
+                const box3El = document.querySelector(".box3");
+                box3El.addEventListener("click", function(e){
+                    //e - 발생 이벤트의 정보가 담겨있음!
+                    //e.stopPropagation(); //이벤트 전파 취소
+                    console.log("BOX3 클릭");
+                    //console.log(e);
+                });
+            });
+        </script>
+        <div class="box box1">
+            BOX1
+            <div class="box box2">
+                BOX2
+                <div class="box box3">
+                    BOX3
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

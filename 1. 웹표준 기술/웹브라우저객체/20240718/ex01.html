@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <!--웹페이지에서는 외부 스크립트를 추가할 수 있다!-->
+        <script src="script1.js"></script>
+        <script src="script2.js"></script>
+        <script>
+            /*
+            window.addEventListener("DOMContentLoaded", function(){
+                const buttonEl = document.getElementById("button");
+                buttonEl.onclick = function(){
+                    alert("클릭1~~~");
+                };
+                
+                buttonEl.onclick = function(){
+                    alert("클릭2----");
+                };
+            });
+            */
+           
+            window.addEventListener("DOMContentLoaded", function(){
+                const buttonEl = document.getElementById("button");
+                //처리기 속성은 대입되기 때문에 사라지지만, 리스너는 다른 파일에서 정의하더라도 영향 X
+
+                buttonEl.addEventListener("click", function(){
+                    alert("클릭1");
+                });
+
+                buttonEl.addEventListener("click", function(){
+                    alert("클릭2");
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <button type="button" id="button">클릭</button>
+    </body>
+</html>
