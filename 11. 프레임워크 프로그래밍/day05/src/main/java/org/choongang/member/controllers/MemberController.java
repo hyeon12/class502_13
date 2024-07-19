@@ -92,21 +92,50 @@ public class MemberController {
         return "redirect:/member/login";
     }
 
+
+//    @GetMapping("/list")
+//    public String list(@ModelAttribute @Valid MemberSearch search, Errors errors){
+//        /**
+//         * @ModelAttribute
+//         * 객체 초기화 - 파라미터가 없어도 객체가 null이 되지 않도록 보장
+//         * 자동 바인딩 - 요청 파라미터를 객체 필드에 자동으로 바인딩
+//         * 모델 추가 - 객체를 모델에 자동으로 추가, 뷰에서 참조 가능
+//         * */
+//
+//        log.info(search.toString());
+//
+//        boolean result = false;
+//        if(!result){
+//            throw new RuntimeException("⁉예외 발생🚨");
+//        }
+//
+//        return "member/list";
+//    }
+
     @GetMapping("/list")
-    public String list(@ModelAttribute @Valid MemberSearch search, Errors errors){
-        /**
-         * @ModelAttribute
-         * 객체 초기화 - 파라미터가 없어도 객체가 null이 되지 않도록 보장
-         * 자동 바인딩 - 요청 파라미터를 객체 필드에 자동으로 바인딩
-         * 모델 추가 - 객체를 모델에 자동으로 추가, 뷰에서 참조 가능
-         * */
+    public String list(Model model){
 
-        log.info(search.toString());
+        /*
+        //임의로 만든 멤버
+        Member member = Member.builder()
+                .email("user01@test.org")
+                .password("12345678")
+                .userName("<h1>사용자</h1>")
+                .regDt(LocalDateTime.now())
+                .build();
 
-        boolean result = false;
-        if(!result){
-            throw new RuntimeException("⁉예외 발생🚨");
-        }
+        model.addAttribute("member", member);
+                */
+
+        List<Member> items = IntStream.rangeClosed(1, 10)
+                .mapToObj(i -> Member.builder()
+                        .email("user" + i + "@test.org")
+                        .userName("사용자" + i)
+                        .regDt(LocalDateTime.now())
+                        .build())
+                .toList();
+
+        model.addAttribute("items", items);
 
         return "member/list";
     }
@@ -119,7 +148,7 @@ public class MemberController {
 
     @ResponseBody
     @GetMapping("/list2")
-    public List<Member> list(){
+    public List<Member> list2(){
         List<Member> members = IntStream.rangeClosed(1, 10)
                 .mapToObj(i -> Member.builder()
                         .email("user" + i + "@test.org")
