@@ -16,14 +16,17 @@ public class RestCommonControllerAdvice {
     public ResponseEntity<JSONData> errorHandler(Exception e) {
         // 발생하는 응답 코드(에러)가 다르기 때문에 매번 달라질 수 있도록...! ResponseEntity
 
-        Object message = e.getMessage();
+        Object message = e.getMessage(); //Exception 객체로부터 메시지를 가져와 message 변수에 저장 (일반적인 기본 메시지)
 
-        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500
-        if (e instanceof CommonException commonException) {
-            status = commonException.getStatus();
+        HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR; // 500 - 기본 예외 발생한 경우..
+
+        if (e instanceof CommonException commonException) { //CommonException(내가 정의한!!!) 타입의 예외 발생 시
+            status = commonException.getStatus(); // 해당 예외에서 정의한 상태 코드와 오류 메시지를 사용
 
             Map<String, List<String>> errorMessages = commonException.getErrorMessages();
-            if(errorMessages != null) message = errorMessages; //커맨드 객체 검증 메세지
+            // 내가 설정한!! 상태 코드 가져옴
+            if(errorMessages != null) message = errorMessages;
+            //일반 문구 x, Map 형태의 커맨드 객체 검증 메세지로 교체!
         }
 
         JSONData data = new JSONData();

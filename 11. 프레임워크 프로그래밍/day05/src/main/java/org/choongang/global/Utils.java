@@ -56,6 +56,9 @@ public class Utils { //검증 실패 시 호출할 메세지
                 .map(c -> {
                     try{
                         return ms.getMessage(c, null, request.getLocale());
+                        //getMessage -> args : 치환될 부분 ex)) LOGIN_MSG = {0}({1}) logged in...
+                        //그러나 에러 메세지는 그대로 사용되고, 교체될 부분이 없기 때문에 args : null 로 설정
+
                     }catch (Exception e){
                         return "";
                     }
