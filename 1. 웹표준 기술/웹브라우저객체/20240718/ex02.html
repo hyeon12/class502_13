@@ -33,9 +33,14 @@
                 const box3El = document.querySelector(".box3");
                 box3El.addEventListener("click", function(e){
                     //e - 발생 이벤트의 정보가 담겨있음!
-                    //e.stopPropagation(); //이벤트 전파 취소
-                    console.log("BOX3 클릭");
+                    //e.stopPropagation(); //이벤트 전파 취소 - 동일 요소 클릭한 이벤트만 전파 취소
+                    e.stopImmediatePropagation(); //동일 요소 모든 이벤트 전파 취소
+                    console.log("BOX3 클릭1");
                     //console.log(e);
+                });
+
+                box3El.addEventListener("click", function(e){
+                    console.log("BOX3 클릭2");
                 });
             });
         </script>
