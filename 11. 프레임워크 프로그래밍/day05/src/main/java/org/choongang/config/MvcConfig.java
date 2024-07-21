@@ -51,7 +51,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //정적 경로 설정
+        //정적 리소스의 경로 설정
         registry.addResourceHandler("/**")
                 .addResourceLocations("classpath:/static/");
 
@@ -59,6 +59,7 @@ public class MvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
+        // 특정 URL 경로에 대해 직접 뷰를 연결
         registry.addViewController("/")
                 .setViewName("main/index"); //뷰만 연동해서 main 경로를 지정 가능
 
