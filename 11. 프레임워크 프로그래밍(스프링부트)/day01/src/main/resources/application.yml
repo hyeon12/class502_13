@@ -1,0 +1,29 @@
+# 서블릿, 서버 설정 - server
+# 서버 포트 3000번으로 설정 - 톰캣 서버가 내부에 포함되어 있기 때문에 여기에서!
+# server.port=3000
+
+#spring.application.name=day01
+#spring.devtools.livereload.enabled=true
+# 스프링의 하위 설정 목록인 devtools -> 마침표(.)를 써서 하위 목록 구성
+
+
+# 하위 목록 -> : + ENTER + 들여쓰기
+server:
+  port: 3000
+
+spring:
+  application:
+    name: "Day01"
+
+  # 라이브 리로드 설정
+  devtools:
+    livereload:
+      enabled: true
+
+file:
+  upload:
+    path: # -는 리스트 형태의 값 - file.upload.path
+      - D:/uploads/
+      - D:/uploads2/
+    url: /uploads/ # file.upload.url
+

@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### 개발환경에 따라 달라지는 환경변수
+### dev -> 깃에 올라가지 않도록 gitignore
+application-dev.*
