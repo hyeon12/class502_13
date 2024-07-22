@@ -15,12 +15,18 @@ import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class Utils { //검증 실패 시 호출할 메세지
+public class Utils {  // 빈의 이름 - utils
+    //검증 실패 시 호출할 메세지
     // 필드명과 에러 메세지를 가공
     // 에러 코드가 넘어오면 해당되는 메세지 출력될 수 있도록
 
     private final MessageSource messageSource;
     private final HttpServletRequest request;
+
+    // uppercase -> 있는 기능.. 예시용!
+    public String toUpper(String str){
+        return str.toUpperCase();
+    }
 
 
     //getAllErrors 로 가져오는 대신, FiledErrors / GlobalErrors 나눠서 가져옴!

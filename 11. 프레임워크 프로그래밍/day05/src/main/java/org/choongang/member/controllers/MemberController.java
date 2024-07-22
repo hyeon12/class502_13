@@ -129,13 +129,17 @@ public class MemberController {
 
         List<Member> items = IntStream.rangeClosed(1, 10)
                 .mapToObj(i -> Member.builder()
-                        .email("user" + i + "@test.org")
+                        .email("user0" + i + "@test.org")
                         .userName("사용자" + i)
                         .regDt(LocalDateTime.now())
                         .build())
                 .toList();
 
         model.addAttribute("items", items);
+
+        //특정 페이지마다 다르게 적용되어야 할 css, js를 addAttribute로 적용
+        model.addAttribute("addCss", new String[] {"member/style", "member/list"});
+        model.addAttribute("addScript", List.of("member/common", "member/list"));
 
         return "member/list";
     }

@@ -1,0 +1,38 @@
+<!-- 화면에 공통적으로 구성될 틀 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8">
+        <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+        <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+
+        <th:block layout:fragment="addCss"></th:block>
+        <!-- 다른 템플릿에서 이 프래그먼트를 대체할 수 있는 "위치"를 정의
+           특정 페이지에서 추가적으로 포함하고 싶은 css 파일이 있다면 해당 페이지의 템플릿에서
+            이 프래그먼트에 내용을 삽입하여 추가 css 파일을 정의함 -->
+
+        <th:block th:if="${addCss != null}">
+            <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"
+                  th:href="@{/css/{file}.css(file=${cssFile})}">
+        </th:block>
+
+        <script th:src="@{/js/common.js}"></script>
+
+        <th:block layout:fragment="addScript"></th:block>
+
+        <th:block th:if="${addScript != null}">
+            <script th:each="jsFile : ${addScript}" th:src="@{/js/{file}.js(file=${jsFile})}"></script>
+        </th:block>
+
+    </head>
+    <body>
+        <header th:replace="~{outlines/header::common}"></header>
+
+        <main layout:fragment="content"></main>
+        <!-- layout -> 내용 치환 기능 -->
+
+        <footer th:replace="~{outlines/footer::common}"></footer>
+        <iframe name="ifrmProcess" class="dn"></iframe>
+    </body>
+</html>
