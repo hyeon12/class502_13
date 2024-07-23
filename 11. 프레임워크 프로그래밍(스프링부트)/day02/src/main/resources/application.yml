@@ -1,0 +1,33 @@
+# 공통 애플리케이션 속성 설정 파일
+
+# 서버 설정
+server:
+  port: 3000
+
+# yml 환경 설정 시, 필드명 driver_class_name -> driverClassName 모두 사용 가능(스프링 부트)
+# 스프링 설정
+spring:
+  # 데이터 베이스 설정
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    user: ${db.userName}
+    password: ${db.password}
+
+  # JPA 설정
+  jpa:
+    properties:
+      show_sql: true # 실행하는 SQL을 콘솔에 출력 (true)
+      format_sql: true # 실행되는 SQL의 들여쓰기 및 줄 개행 기능 (true)
+      use_sql_comments: true
+      #dialect: org.hibernate.dialect.OracleDialect - 이전 버전 : dialect 설정 필수!
+    hibernate:
+      ddlAuto: create # 테이블 자동 생성
+
+# 로거 설정 (설정 추가 -> level: 하위에 넣으면 됨)
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
+
