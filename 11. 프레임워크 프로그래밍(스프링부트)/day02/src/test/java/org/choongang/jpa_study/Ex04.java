@@ -31,14 +31,15 @@ public class Ex04 {
         em.clear();
 
         member = em.find(Member.class, member.getSeq());
-        System.out.printf("createAt: %s, modifiedAt: %s%n", member.getCreatedAt(), member.getModifiedAt());
+        System.out.printf("createdAt: %s, modifiedAt: %s%n", member.getCreatedAt(), member.getModifiedAt());
 
         Thread.sleep(5000);
+        member.setCreatedAt(LocalDateTime.now());
         member.setUserName("(수정)김사용");
         em.flush();
         em.clear();
 
         member = em.find(Member.class, member.getSeq());
-        System.out.printf("createAt: %s, modifiedAt: %s%n", member.getCreatedAt(), member.getModifiedAt());
+        System.out.printf("createdAt: %s, modifiedAt: %s%n", member.getCreatedAt(), member.getModifiedAt());
     }
 }
