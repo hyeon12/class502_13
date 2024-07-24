@@ -2,11 +2,13 @@ package org.choongang.member.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.choongang.global.entities.BaseEntity;
 import org.choongang.member.constants.Authority;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @Entity
@@ -17,7 +19,7 @@ import java.time.LocalDateTime;
         @Index(name="uq_email_password", columnList = "email, password", unique = true)
         })*/
 
-public class Member {
+public class Member extends BaseEntity {
     @Id /* @GeneratedValue(strategy=GenerationType.AUTO) */ @GeneratedValue
     private Long seq;
     private String email;
@@ -31,9 +33,16 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
+    /*
     @CreationTimestamp
     private LocalDateTime createdAt; //생성 일자
 
     @UpdateTimestamp
     private LocalDateTime modifiedAt; //수정 일자
+     */
+
+    /*
+    @Temporal(TemporalType.DATE) //날짜만
+    private Date date;
+     */
 }

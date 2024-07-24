@@ -31,7 +31,7 @@ public class Ex04 {
         em.clear();
 
         member = em.find(Member.class, member.getSeq());
-        System.out.println(member);
+        System.out.printf("createAt: %s, modifiedAt: %s%n", member.getCreatedAt(), member.getModifiedAt());
 
         Thread.sleep(5000);
         member.setUserName("(수정)김사용");
@@ -39,6 +39,6 @@ public class Ex04 {
         em.clear();
 
         member = em.find(Member.class, member.getSeq());
-        System.out.println(member);
+        System.out.printf("createAt: %s, modifiedAt: %s%n", member.getCreatedAt(), member.getModifiedAt());
     }
 }
