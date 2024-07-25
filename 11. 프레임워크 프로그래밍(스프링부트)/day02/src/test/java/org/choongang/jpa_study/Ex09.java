@@ -22,7 +22,8 @@ import java.util.stream.IntStream;
 @Transactional
 // 관계 매핑의 경우, 원데이터가 사라지게 되면 오류 발생
 // 원데이터의 영속 상태 유지시킬 수 있게 트랜잭션 사용
-public class Ex09 {
+public class
+Ex09 {
 
     /* 다대일, 일대다 */
 
@@ -60,7 +61,7 @@ public class Ex09 {
         BoardData item = boardDataRepository.findById(1L).orElse(null);
 
         Member member = item.getMember(); //게시글을 작성한 회원
-        System.out.println(member);
+        //System.out.println(member); //주석처리하게 되면 getMember 실행X, 사용해야 쿼리 실행된다~!
     }
 
     @Test

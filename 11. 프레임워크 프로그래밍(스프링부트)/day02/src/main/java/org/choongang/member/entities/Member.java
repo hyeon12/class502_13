@@ -40,7 +40,7 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
-    @OneToOne //memberProfile_seq 로 만들어짐
+    @OneToOne(fetch=FetchType.LAZY) //memberProfile_seq 로 만들어짐
     @JoinColumn(name="profile_seq")
     private MemberProfile profile;
 
