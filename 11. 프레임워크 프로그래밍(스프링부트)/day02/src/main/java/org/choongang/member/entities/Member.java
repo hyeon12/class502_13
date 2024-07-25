@@ -1,10 +1,8 @@
 package org.choongang.member.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.choongang.board.entities.BoardData;
 import org.choongang.global.entities.BaseEntity;
 import org.choongang.member.constants.Authority;
 import org.hibernate.annotations.CreationTimestamp;
@@ -12,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder //기본 생성자 없으면 .. 오류
@@ -40,6 +39,15 @@ public class Member extends BaseEntity {
     @Column(length=10)
     @Enumerated(EnumType.STRING)
     private Authority authority;
+
+    @OneToOne //memberProfile_seq 로 만들어짐
+    @JoinColumn(name="profile_seq")
+    private MemberProfile profile;
+
+    //One(Member) To Many(BoardData)
+    @ToString.Exclude //ToString 추가 배제
+    @OneToMany(mappedBy = "member")
+    private List<BoardData> items;
 
     //@Lob
     @Transient // 내부에서 2차 가공해서 넣어줄 데이터
