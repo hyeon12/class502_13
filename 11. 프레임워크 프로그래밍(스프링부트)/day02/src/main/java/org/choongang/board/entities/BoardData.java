@@ -28,7 +28,8 @@ public class BoardData extends BaseEntity {
     @Lob
     private String content;
 
+    /*
     @ManyToMany
-    private List<HashTag> tags;
+    private List<HashTag> tags;*/
     //게시글 하나에 여러 개의 해시 태그 가능(List)
 }

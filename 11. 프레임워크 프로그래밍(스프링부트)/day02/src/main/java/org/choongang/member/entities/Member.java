@@ -46,7 +46,8 @@ public class Member extends BaseEntity {
 
     //One(Member) To Many(BoardData)
     @ToString.Exclude //ToString 추가 배제
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",
+            cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true) // 제약조건 CASCADE ON DELETE 는 아니다!
     private List<BoardData> items;
 
     //@Lob

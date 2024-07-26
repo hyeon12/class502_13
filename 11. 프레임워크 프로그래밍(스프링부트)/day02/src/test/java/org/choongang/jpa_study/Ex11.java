@@ -10,55 +10,61 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-@ActiveProfiles("test")
-@Transactional
+//@ActiveProfiles("test")
+//@Transactional
 public class Ex11 {
+
     @Autowired
     private BoardDataRepository boardDataRepository;
+
     @Autowired
     private HashTagRepository hashTagRepository;
+
     @PersistenceContext
     private EntityManager em;
 
     @BeforeEach
-    void init(){
+    void init() {
         List<HashTag> tags = IntStream.rangeClosed(1, 5)
                 .mapToObj(i -> HashTag.builder()
                         .tag("태그" + i)
                         .build()).toList();
 
         hashTagRepository.saveAllAndFlush(tags);
+
         List<BoardData> items = IntStream.rangeClosed(1, 5)
                 .mapToObj(i -> BoardData.builder()
                         .subject("제목" + i)
                         .content("내용" + i)
-                        .tags(tags)
+                        //.tags(tags)
                         .build()).toList();
-
         boardDataRepository.saveAllAndFlush(items);
 
-        em.clear();
+        //em.clear();
     }
 
     @Test
-    void test1(){
+    void test0() {
+
+    }
+
+    @Test
+    void test1() {
         BoardData item = boardDataRepository.findById(1L).orElse(null);
-        List<HashTag> tags = item.getTags();
-        tags.forEach(System.out::println);
+
+        // List<HashTag> tags = item.getTags();
+        //tags.forEach(System.out::println);
     }
 
     @Test
-    void test2(){
+    void test2() {
         HashTag tag = hashTagRepository.findById("태그2").orElse(null);
-        List<BoardData> items = tag.getItems(); //태그2 로 매핑되어 있는 게시글 조회
-        items.forEach(System.out::println);
+        //List<BoardData> items = tag.getItems();
+        //items.forEach(System.out::println);
     }
-
 }
