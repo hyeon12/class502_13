@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<main layout:fragment="content">
+    <h1 th:name="#{게시글 수정}"></h1>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Description</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${boardlist}">
+                <td th:text="${board.poster}"></td>
+                <td th:text="${board.subject}"></td>
+                <td th:text="${board.content}"></td>
+            </tr>
+        </tbody>
+    </table>
+</main>
+</html>
