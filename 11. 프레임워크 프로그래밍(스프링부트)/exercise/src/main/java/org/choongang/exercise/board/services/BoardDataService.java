@@ -11,8 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class BoardDataSaveService {
+public class BoardDataService {
     private final BoardDataRepository boardDataRepository;
+    private final RequestBoardData data;
 
     public void save(RequestBoardData form){
         BoardData boardData = new ModelMapper().map(form, BoardData.class);
@@ -22,5 +23,14 @@ public class BoardDataSaveService {
     public void save(BoardData data){
         boardDataRepository.save(data);
         boardDataRepository.flush();
+    }
+
+    public void delete(long id){
+        if (boardDataRepository.existsById(id)) {
+            boardDataRepository.deleteById(id);
+        } else {
+            // 게시글이 존재하지 않는 경우 처리
+            throw new RuntimeException("게시글이 존재하지 않습니다.");
+        }
     }
 }

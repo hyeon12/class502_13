@@ -3,7 +3,7 @@ package org.choongang.exercise.board.service;
 import org.choongang.exercise.board.controllers.RequestBoardData;
 import org.choongang.exercise.board.entities.BoardData;
 import org.choongang.exercise.board.repositories.BoardDataRepository;
-import org.choongang.exercise.board.services.BoardDataSaveService;
+import org.choongang.exercise.board.services.BoardDataService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.List;
 //@ActiveProfiles("test")
 public class BoardSaveServiceTest {
     @Autowired
-    private BoardDataSaveService saveService;
+    private BoardDataService saveService;
     @Autowired
     private BoardDataRepository repository;
 

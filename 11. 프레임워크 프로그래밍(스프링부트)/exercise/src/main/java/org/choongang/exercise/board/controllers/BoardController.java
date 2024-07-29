@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.choongang.exercise.board.entities.BoardData;
 import org.choongang.exercise.board.repositories.BoardDataRepository;
-import org.choongang.exercise.board.services.BoardDataSaveService;
+import org.choongang.exercise.board.services.BoardDataService;
 import org.choongang.exercise.board.validators.BoardDataValidator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +25,7 @@ public class BoardController {
 
     private final BoardDataRepository boardDataRepository;
     private final BoardDataValidator boardDataValidator;
-    private final BoardDataSaveService saveService;
+    private final BoardDataService saveService;
 
     @GetMapping("/list")
     public String list(Model model){

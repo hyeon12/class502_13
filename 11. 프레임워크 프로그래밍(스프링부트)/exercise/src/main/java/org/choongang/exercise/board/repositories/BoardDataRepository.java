@@ -12,4 +12,5 @@ public interface BoardDataRepository extends JpaRepository<BoardData, Long>, Que
     List<BoardData> getAllList();
 
     List<BoardData> findBySubjectContaining(String key);
+
 }
