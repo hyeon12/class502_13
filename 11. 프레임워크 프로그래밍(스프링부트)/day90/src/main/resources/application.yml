@@ -1,0 +1,42 @@
+server:
+  port: 3000
+
+spring:
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@${db.host}:${db.port}:XE
+    username: ${db.username}
+    password: ${db.password}
+
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comment: true
+    hibernate:
+      ddlAuto: create # 배포 시 none
+
+  devtools:
+    livereload:
+      enabled: true # 배포 시 false
+
+  web:
+    resources:
+      staticLocations: file:src/main/resources/static/
+
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 60MB
+      fileSizeThreshold: 30MB
+
+file:
+  upload:
+    path: D:/uploads
+    url: /upload/
+
+logging:
+  level:
+    org.hibernate.type: trace
+    org.hibernate.orm.jdbc.bind: trace

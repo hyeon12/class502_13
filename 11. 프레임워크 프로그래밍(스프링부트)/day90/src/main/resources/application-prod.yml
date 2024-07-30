@@ -1,0 +1,22 @@
+# 배포 환경
+spring:
+  jpa:
+    hibernate:
+      ddlAuto: create
+
+  devtools:
+    livereload:
+      enabled: false
+
+  web:
+    resources:
+      staticLocations: classpath:/static/
+
+  thymeleaf:
+    cache: true
+    prefix: classpath:/templates/
+
+file:
+  upload:
+    path: /home/ubuntu/uploads #AWS
+    url: /upload/
