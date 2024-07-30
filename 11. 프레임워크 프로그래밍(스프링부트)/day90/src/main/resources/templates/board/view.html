@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="#{게시글}"></h1>
+    <!--<form method="post" th:action="@{/board/delete}" target="ifrmHidden" autocomplete="off">-->
+
+    <form class="view_form" method="POST" th:action="@{/board/update}" th:object="${boardData}">
+        <input type="hidden" name="seq" th:field="*{seq}">
+        <dl>
+            <dt type="sub" th:text="#{제목}"></dt>
+            <dd type="sub" th:text="*{subject}"></dd>
+        </dl>
+        <dl>
+            <dt type="sub" th:text="#{작성자}"></dt>
+            <dd type="sub" th:text="*{poster}"></dd>
+        </dl>
+        <dl>
+            <dt type="big" th:text="#{내용}"></dt>
+            <dd type="big" th:text="*{content}"></dd>
+        </dl>
+        <a th:href="@{/board/update/{seq}(seq=*{seq})}" class="btn">게시글 수정</a>
+        <a th:href="@{/board/delete/{seq}(seq=*{seq})}" class="btn">게시글 삭제</a>
+        <a th:href="@{/board/list}" class="btn">게시판 보기</a>
+        <!--<a href="/board/delete" class="btn">게시글 수정</a>-->
+
+        <!--
+            <a href="/board/write" class="btn">게시글 작성</a>
+            <a href="/board/delete" class="btn">게시글 삭제</a> -->
+    </form>
+</main>
+</html>

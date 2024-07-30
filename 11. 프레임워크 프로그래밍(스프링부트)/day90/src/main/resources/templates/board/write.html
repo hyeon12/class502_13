@@ -4,7 +4,7 @@
       layout:decorate="~{layouts/main}">
 <main layout:fragment="content">
     <h1 th:text="#{게시글_작성}"></h1>
-    <form name="frmWrite" method="POST" th:action="@{/board/write}" autocomplete="off" th:object="${requestBoardData}">
+    <form name="frmWrite" class="w_form" method="POST" th:action="@{/board/write}" autocomplete="off" th:object="${requestBoardData}">
         <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
         <dl>
             <dt th:text="#{작성자}"></dt>
@@ -23,7 +23,7 @@
         <dl>
             <dt th:text="#{내용}"></dt>
             <dd>
-                <input type="text" name="content" th:field="*{content}">
+                <textarea type="text" name="content" th:field="*{content}" class="cont"> </textarea>
                 <div class="error" th:each="err : ${#fields.errors('content')}" th:text="${err}"></div>
             </dd>
         </dl>

@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 
 @Configuration
-@EnableJpaAuditing // 쓸까..?
+@EnableJpaAuditing
 public class MvcConfig {
 
     @Bean

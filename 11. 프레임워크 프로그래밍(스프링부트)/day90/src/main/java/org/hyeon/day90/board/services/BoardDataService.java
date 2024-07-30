@@ -15,8 +15,24 @@ public class BoardDataService {
     private final BoardDataRepository boardDataRepository;
 
     public void save(RequestBoardData form){
-        BoardData boardData = new ModelMapper().map(form, BoardData.class);
-        save(boardData);
+        Long seq = form.getSeq();
+        BoardData boardData = null;
+
+        if (seq != null){ // 수정
+            boardData = boardDataRepository.findById(seq).orElse(null);
+            if(boardData != null) {
+                boardData.setPoster(form.getPoster());
+                boardData.setSubject(form.getSubject());
+                boardData.setContent(form.getContent());
+            }
+        }
+
+        // 추가
+        if (boardData == null) boardData = new ModelMapper().map(form, BoardData.class);
+
+        boardDataRepository.saveAndFlush(boardData);
+        //BoardData boardData = new ModelMapper().map(form, BoardData.class);
+        //save(boardData);
     }
 
     public void save(BoardData data){

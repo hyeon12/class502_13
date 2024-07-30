@@ -19,7 +19,12 @@ public class QBoardData extends EntityPathBase<BoardData> {
 
     public static final QBoardData boardData = new QBoardData("boardData");
 
+    public final org.hyeon.day90.global.constants.QBaseEntity _super = new org.hyeon.day90.global.constants.QBaseEntity(this);
+
     public final StringPath content = createString("content");
+
+    //inherited
+    public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
     public final StringPath poster = createString("poster");
 

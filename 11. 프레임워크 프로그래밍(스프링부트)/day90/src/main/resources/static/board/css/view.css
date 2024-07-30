@@ -1,0 +1,43 @@
+.view_form {
+    width: 600px;
+    height: 500px;
+    background: #F1F8E8;
+    border: solid 10px #F1F8E8;
+    border-radius: 6px;
+}
+
+dl dt[type="sub"]{
+    border: solid 3px #e3e3e3;
+    float: left;
+    width: 20%;
+    padding: 7px 5px;
+    text-align: center;
+    padding-left: 20px;
+    background: #e3e3e3;
+}
+
+dl dd[type="sub"]{
+    border: solid 3px #e3e3e3;
+    padding: 7px 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+dl dt[type="big"]{
+    border: solid 3px #e3e3e3;
+    width: 97%;
+    float: left;
+    padding: 7px;
+    text-align: center;
+    background: #e3e3e3;
+}
+
+dl dd[type="big"]{
+    border: solid 3px #e3e3e3;
+    width: 436px;
+    float: left;
+    padding: 80px;
+    text-align: center;
+    margin: 0px;
+    margin-bottom: 30px;
+}

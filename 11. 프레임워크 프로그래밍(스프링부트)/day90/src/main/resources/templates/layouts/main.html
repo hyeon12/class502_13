@@ -9,16 +9,22 @@
         🌱코딩 새싹🐣
     </title>
     <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
+    <link th:if="${addCss != null}" rel="stylesheet" type="text/css"
+    th:each="cssFile: ${addCss}" th:href="@{/board/css/{file}.css(file=${cssFile})}">
+
     <th:block layout:fragment="addCss"></th:block>
 
     <script th:src="@{/common/js/common.js}"></script>
-
+    <script th:if="${addScript != null}" th:each="jsFile : ${addScript}"
+            th:src="@{/board/js/{file}}.js(file=${jsFile}"></script>
     <th:block layout:fragment="addScript"></th:block>
 </head>
 <body>
+    <div class="content_box">
     <header th:replace="~{outlines/_header::common}"></header>
     <main layout:fragment="content"></main>
     <footer th:replace="~{outlines/_footer::common}"></footer>
     <iframe name="ifrmHidden" class="dn"></iframe>
+    </div>
 </body>
 </html>

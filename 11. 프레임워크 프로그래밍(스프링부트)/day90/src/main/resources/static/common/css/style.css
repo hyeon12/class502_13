@@ -2,16 +2,84 @@
     display: none !important; /* 강제 적용 */
 }
 
-.btn {
+header h1{
+    padding: 30px;
+    background: #95D2B3; /*F1F8E8*/
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
+
+.content_box{
+    background: #D8EED3;
+    align-items: center;
+    text-align: center;
+    height: 1000px;
+}
+
+.buttons button {
     display: inline-block;
     margin: 5px 5px;
     padding: 5px 10px;
     font-size: 16px;
-    background-color: #d3d3d3;
+    background-color: LightPink;
     border-color: black;
     border-style: double;
     border-radius: 4px;
     text-decoration: none;
     text-align: center;
     cursor: pointer;
+}
+
+.btn {
+    display: inline;
+    width: 100px;
+    height: 30px;
+    margin: 20px 5px;
+    padding: 5px 10px;
+    font-size: 16px;
+    background-color: LightPink;
+    border-style: solid;
+    border-color: #d3d3d3;
+    border-radius: 4px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* write */
+dl input {
+    font-size: 15px;
+    width: 400px;
+    height: 34px;
+    border: solid 1px #ddd; /* 추가 */
+    padding: 0 10px;
+}
+
+textarea{
+    font-size: 15px;
+    width: 400px;
+    height: 200px;
+    border: solid 1px #ddd; /* 추가 */
+    padding: 0 10px;`
+}
+
+.buttons button:hover {
+    background-color: PaleVioletRed;
+}
+
+.board_list{
+    display: inline-block;
+    text-align: center;
+    margin: 5px 5px;
+}
+
+.w_form{
+    width: 600px;
+    height: 500px;
+    border: solid 10px #F1F8E8;
+    border-radius: 6px;
 }

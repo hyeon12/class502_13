@@ -5,6 +5,7 @@ import lombok.Data;
 
 @Data
 public class RequestBoardData {
+    private Long seq;
     @NotBlank
     private String poster;
 
