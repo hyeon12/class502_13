@@ -1,4 +1,4 @@
-package org.hyeon.day90.service;
+package org.hyeon.day90;
 
 import org.hyeon.day90.board.constants.BoardData;
 import org.hyeon.day90.board.repositories.BoardDataRepository;

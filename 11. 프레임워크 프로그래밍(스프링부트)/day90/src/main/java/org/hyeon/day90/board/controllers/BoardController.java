@@ -4,16 +4,14 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.hyeon.day90.board.constants.BoardData;
 import org.hyeon.day90.board.repositories.BoardDataRepository;
+import org.hyeon.day90.board.services.BoardDataDeleteService;
 import org.hyeon.day90.board.services.BoardDataService;
 import org.hyeon.day90.board.validators.BoardDataValidator;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +23,7 @@ public class BoardController {
     private final BoardDataValidator boardDataValidator;
     private final BoardDataService boardDataService;
     private final BoardDataRepository boardDataRepository;
+    private final BoardDataDeleteService deleteService;
 
     @GetMapping("/list")
     public String list(Model model){
@@ -68,6 +67,18 @@ public class BoardController {
         // 검증 추가하기
 
         return "redirect:/board/list";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam("seq") List<Long> ids, Model model){
+        deleteService.delete(ids);
+
+        //deleteService.delete(seq);
+       // String script = "parent.location.reload();";
+        //model.addAttribute("script", script);
+        //return "redirect:/board/list";
+        model.addAttribute("script", "parent.location.reload()");
+        return "common/_script";
     }
 
 }

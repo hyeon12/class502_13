@@ -22,13 +22,4 @@ public class BoardDataService {
     public void save(BoardData data){
         boardDataRepository.saveAndFlush(data);
     }
-
-    public void delete(long id){
-        if (boardDataRepository.existsById(id)) {
-            boardDataRepository.deleteById(id);
-        } else {
-            // 게시글이 존재하지 않는 경우 처리
-            throw new RuntimeException("게시글이 존재하지 않습니다.");
-        }
-    }
 }
