@@ -13,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class BoardDataService {
     private final BoardDataRepository boardDataRepository;
-    private final RequestBoardData data;
+    //private final RequestBoardData data;
 
     public void save(RequestBoardData form){
         BoardData boardData = new ModelMapper().map(form, BoardData.class);
