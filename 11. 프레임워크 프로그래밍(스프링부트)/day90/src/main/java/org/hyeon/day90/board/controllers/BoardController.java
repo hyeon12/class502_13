@@ -40,7 +40,7 @@ public class BoardController {
 
 
     @GetMapping("/view/{id}")
-    public String view(@PathVariable("id") Long id, Model model){
+    public String view(Model model, @PathVariable("id") Long id){
 //        Optional<BoardData> data = boardDataRepository.findById(id);
 //        data.orElse(null);
 //        model.addAttribute("view", data);
@@ -51,7 +51,8 @@ public class BoardController {
     }
 
     @GetMapping("/write")
-    public String write(@ModelAttribute RequestBoardData form){
+    public String write(@ModelAttribute RequestBoardData form, Model model){
+        model.addAttribute("addCss", new String[] {"write"});
 
         return "board/write";
     }
@@ -69,7 +70,6 @@ public class BoardController {
 
         // 서비스 - 저장 기능 추가
         boardDataService.save(form);
-
         return "redirect:/board/list";
     }
 

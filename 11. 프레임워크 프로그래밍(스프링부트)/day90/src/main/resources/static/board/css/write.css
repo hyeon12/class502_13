@@ -1,0 +1,32 @@
+dl input {
+    font-size: 15px;
+    width: 400px;
+    height: 34px;
+    border: solid 1px #ddd; /* 추가 */
+    padding: 0 10px;
+}
+
+textarea{
+    font-size: 15px;
+    width: 400px;
+    height: 200px;
+    border: solid 1px #ddd; /* 추가 */
+    padding: 0 10px;`
+}
+
+.buttons button:hover {
+    background-color: PaleVioletRed;
+}
+
+.board_list{
+    display: inline-block;
+    text-align: center;
+    margin: 5px 5px;
+}
+
+.w_form{
+    width: 600px;
+    height: 500px;
+    border: solid 10px #F1F8E8;
+    border-radius: 6px;
+}
