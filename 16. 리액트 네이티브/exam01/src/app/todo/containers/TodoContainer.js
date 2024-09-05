@@ -1,18 +1,17 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import { produce } from 'immer';
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
 
 const TodoContainer = () => {
-  const [items, setItems] = useState([
-    { id: 1, title: '할일', done: true },
-    { id: 2, title: '할일2', done: false },
-    { id: 3, title: '할일3', done: false },
-  ]);
-  const [form, setForm] = useState();
+  const [items, setItems] = useState([]);
+  const [form, setForm] = useState({});
+  const [errors, setErrors] = useState({});
 
-  const onToggle = (id) => {
+  const titleRef = useRef();
+
+  const onToggle = useCallback((id) => {
     /*
     const newItems = items.map((item) =>
       id === item.id ? { ...item, done: !item.done } : item,
@@ -32,23 +31,83 @@ const TodoContainer = () => {
           });
       }),
     );
-  };
+  }, []);
 
-  const onRemove = (id) => {
+  const onRemove = useCallback((id) => {
     // filter 메서드
     setItems((items) => items.filter((item) => item.id !== id));
-  };
+  }, []);
 
-  const onSubmit = (e) => {
-    e.preventDefault(); // 양식 기본 동작 차단
-  }
+  const onChange = useCallback((e) => {
+    /**
+     * 이벤트 객체의 중요한 속성 2가지!
+     * e.target - 이벤트가 발생한 요소
+     * e.currentTarget - 이벤트가 바인딩된, 실제 부여된 요소
+     */
+
+    const name = e.target.name;
+    const value = e.target.value;
+    setForm((form) => ({ ...form, [name]: value }));
+    //setForm({...form, [name] : value});
+  }, []);
+
+  const onClick = useCallback((done) => {
+    setForm((form) => ({ ...form, done }));
+  }, []);
+
+  const onSubmit = useCallback(
+    (e) => {
+      e.preventDefault(); // 양식 기본 동작 차단
+
+      // 검증 (1)
+      const _errors = {};
+      let hasErrors = false;
+
+      const requiredFields = {
+        title: '제목을 입력하세요',
+        content: '내용을 입력하세요',
+      };
+
+      // entries : key-value의 쌍
+      for (const [field, message] of Object.entries(requiredFields)) {
+        if (!form[field] || !form[field].trim()) {
+          _errors[field] = _errors[field] ?? []; //없을때는 배열 초기화
+          _errors[field].push(message);
+          hasErrors = true;
+        }
+      }
+
+      setErrors(_errors);
+      if (hasErrors) {
+        //검증실패
+        return;
+      }
+
+      // 일정 등록 처리 (2)
+      const nextId = items ? Math.max(...items.map((item) => item.id)) + 1 : 1;
+      setItems((items) => items.concat({ ...form, id: nextId }));
+
+      // 양식 초기화
+      setForm({});
+      console.log(titleRef);
+      titleRef.current.focus();
+    },
+    [form, items],
+  );
 
   return (
     <>
-      <TodoForm onSubmit={onSubmit} />
+      <TodoForm
+        onSubmit={onSubmit}
+        onChange={onChange}
+        onClick={onClick}
+        form={form}
+        titleRef={titleRef}
+        errors={errors}
+      />
       <TodoList items={items} onToggle={onToggle} onRemove={onRemove} />
     </>
   );
 };
 
-export default TodoContainer;
+export default React.memo(TodoContainer);

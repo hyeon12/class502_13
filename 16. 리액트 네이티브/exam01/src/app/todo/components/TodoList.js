@@ -1,5 +1,5 @@
 import React from 'react';
-import { CiSquareRemove } from "react-icons/ci";
+import { CiSquareRemove } from 'react-icons/ci';
 import { FaCheckSquare, FaRegCheckSquare } from 'react-icons/fa';
 
 const TodoList = ({ items, onToggle, onRemove }) => {
@@ -7,15 +7,18 @@ const TodoList = ({ items, onToggle, onRemove }) => {
     <ul>
       {items &&
         items.length > 0 &&
-        items.map(({ id, title, done }) => (
+        items.map(({ id, title, content, done }) => (
           <li key={id} onClick={() => onToggle(id)}>
-            {done ? <FaCheckSquare /> : <FaRegCheckSquare />}
-            {title}
-            <CiSquareRemove onClick={() => onRemove(id)}/>
+            <div>
+              {done ? <FaCheckSquare /> : <FaRegCheckSquare />}
+              {title}
+              <CiSquareRemove onClick={() => onRemove(id)} />
+            </div>
+            {content && <div>{content}</div>}
           </li>
         ))}
     </ul>
   );
 };
 
-export default TodoList;
+export default React.memo(TodoList);
