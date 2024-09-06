@@ -1,15 +1,42 @@
 'use client';
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { produce } from 'immer';
 import TodoForm from '../components/TodoForm';
 import TodoList from '../components/TodoList';
+
+// 컴포넌트 밖에 있는 함수 -> 한 번 만들어지면 변경X
+function func1() {
+
+}
 
 const TodoContainer = () => {
   const [items, setItems] = useState([]);
   const [form, setForm] = useState({});
   const [errors, setErrors] = useState({});
 
+  // 컴포넌트 내부에 있는 함수로, 컴포넌트 로딩될 때마다 변경
+  function func2() {
+
+  }
+
   const titleRef = useRef();
+
+  /*
+  useEffect(() => {
+    //if (titleRef) {
+    //  titleRef.current.focus();
+    //}
+    console.log('useEffect() 호출');
+    return () => {
+      console.log('뒷정리 함수 - 2번째부터 처음 호출 - 정리 작업');
+    };
+  }, [form]);*/
+
+  useEffect(() => {
+    if (titleRef) {
+      titleRef.current.focus();
+    }
+  }, [titleRef]);
 
   const onToggle = useCallback((id) => {
     /*
@@ -19,9 +46,10 @@ const TodoContainer = () => {
     setItems(newItems);
   };
 
-  // 기존객체의 불변성을 유지하고, 새로운 객체를 만들어줘야 변경됨!
+  // 기존객체의 불변성을 유지, 새로운 객체를 만들어줘야 변경됨!
   // 즉, 리액트는 주소가 바뀌어야 변경을 감지한다
-*/
+    */
+
     setItems(
       produce((draft) => {
         draft
