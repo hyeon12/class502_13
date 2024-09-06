@@ -1,0 +1,18 @@
+.item {
+    display: flex;
+}
+
+.item dt {
+    width: 100px;
+}
+
+.item dd {
+    flex-grow: 1;
+}
+
+/* 공통 css */
+/*
+:global .tit {
+    font-size: 1.3rem;
+    font-weight: bold;
+}*/
